@@ -29,6 +29,7 @@ import java.util.Set;
 @Aspect
 @Component
 public class OperateLogAspect {
+
     private final static Logger logg = LoggerFactory.getLogger(OperateLogAspect.class);
     private final static Set<String> EXCLUDE_SET;
 

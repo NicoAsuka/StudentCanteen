@@ -32,7 +32,7 @@ public class Account implements Serializable {
      */
     @TableId(type = IdType.AUTO)
     @ExcelProperty("UID")
-    private Long uid;
+    private Integer uid;
 
     @NotNull(message = "用户名不能为 null")
     @ExcelProperty("账号")
@@ -42,9 +42,13 @@ public class Account implements Serializable {
     @ExcelProperty("密码")
     private String password;
 
+    @NotNull(message = "账户余额不能为 null")
+    private Double balance;
+
+
     /**
-     * student/admin/superadmin
-     * 0,1,2
+     * student/admin
+     * 0,1
      */
     @ExcelIgnore
     private Integer role;
