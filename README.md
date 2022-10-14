@@ -1,1 +1,1 @@
-# SAST-FreshCup-Backend
+# StudentCanteen
