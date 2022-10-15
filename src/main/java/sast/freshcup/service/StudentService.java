@@ -1,7 +1,5 @@
 package sast.freshcup.service;
 
-import sast.freshcup.entity.Order;
-
 import java.util.Map;
 
 /**
@@ -19,4 +17,6 @@ public interface StudentService {
     Map<String, Object> getDishList(Integer pageNum, Integer pageSize);
 
     Map<String, Object> createOrder(String dishesId);
+
+    String deleteOrder(Integer id);
 }

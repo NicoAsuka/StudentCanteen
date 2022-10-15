@@ -14,5 +14,8 @@ import java.util.Map;
 
 public interface AdminDishService {
 
+    Map<String, Object> getDishList(Integer pageNum, Integer pageSize);
+
+    Map<String, Object> createDish(String dishesId);
 }
 
