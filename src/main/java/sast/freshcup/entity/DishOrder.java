@@ -1,13 +1,14 @@
 package sast.freshcup.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  * @author: 李林涛
@@ -17,8 +18,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class Order {
-
+public class DishOrder {
+    @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
 
     @NotNull(message = "用户uid不能为 null")

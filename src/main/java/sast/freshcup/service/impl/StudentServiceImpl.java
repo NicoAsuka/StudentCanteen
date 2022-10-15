@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 import sast.freshcup.common.enums.ErrorEnum;
 import sast.freshcup.entity.Account;
 import sast.freshcup.entity.Dish;
-import sast.freshcup.entity.Order;
+import sast.freshcup.entity.DishOrder;
 import sast.freshcup.entity.Restaurant;
 import sast.freshcup.exception.LocalRunTimeException;
 import sast.freshcup.mapper.AccountMapper;
 import sast.freshcup.mapper.DishMapper;
-import sast.freshcup.mapper.OrderMapper;
+import sast.freshcup.mapper.DishOrderMapper;
 import sast.freshcup.mapper.RestaurantMapper;
 import sast.freshcup.service.StudentService;
 
@@ -42,7 +42,7 @@ public class StudentServiceImpl implements StudentService {
     DishMapper dishMapper;
 
     @Autowired
-    OrderMapper orderMapper;
+    DishOrderMapper orderMapper;
 
 
 
@@ -175,16 +175,15 @@ public class StudentServiceImpl implements StudentService {
         }
 
         //新建一个对象类
-        Order order = new Order();
+        DishOrder dishOrder = new DishOrder();
         //将参数传入
-        order.setDishesId(dishesId);
-        order.setUid(accountHolder.get().getUid());
-        order.setIsDeleted(0);
-        order.setTotalPrice(totalPrice);
+        dishOrder.setDishesId(dishesId);
+        dishOrder.setUid(accountHolder.get().getUid());
+        dishOrder.setIsDeleted(0);
+        dishOrder.setTotalPrice(totalPrice);
 
-        //TODO 有点bug，明天修一下
-//        //将新的订单插入数据库
-//        orderMapper.insert(order);
+        //将新的订单插入数据库
+        orderMapper.insert(dishOrder);
 
         Map<String, Object> res = new HashMap<>();
         res.put("uid",accountHolder.get().getUid());
@@ -193,6 +192,14 @@ public class StudentServiceImpl implements StudentService {
         res.put("dishesId",dishesId);
         res.put("totalPrice",totalPrice);
         return res;
+    }
+
+    @Override
+    public String deleteOrder(Integer id) {
+        DishOrder dishOrder = orderMapper.selectById(id);
+        dishOrder.setIsDeleted(1);
+        orderMapper.updateById(dishOrder);
+        return "成功取消订单";
     }
 
 
