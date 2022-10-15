@@ -1,6 +1,10 @@
 package sast.freshcup.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 
@@ -8,6 +12,10 @@ import javax.validation.constraints.NotNull;
  * @author: 李林涛
  * @date 2022/10/14 15:54
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class Restaurant {
     @NotNull(message = "菜品id不能为 null")
     private Integer id;

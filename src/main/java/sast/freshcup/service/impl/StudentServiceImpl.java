@@ -1,17 +1,23 @@
 package sast.freshcup.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sast.freshcup.common.enums.ErrorEnum;
 import sast.freshcup.entity.Account;
+import sast.freshcup.entity.Dish;
+import sast.freshcup.entity.Restaurant;
 import sast.freshcup.exception.LocalRunTimeException;
 import sast.freshcup.mapper.AccountMapper;
+import sast.freshcup.mapper.DishMapper;
+import sast.freshcup.mapper.RestaurantMapper;
 import sast.freshcup.service.StudentService;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static sast.freshcup.interceptor.AccountInterceptor.accountHolder;
@@ -25,6 +31,13 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     AccountMapper accountMapper;
+
+    @Autowired
+    RestaurantMapper restaurantMapper;
+
+    @Autowired
+    DishMapper dishMapper;
+
 
 
     @Override
@@ -86,4 +99,50 @@ public class StudentServiceImpl implements StudentService {
         returnBalance.put("newBalance",account.getBalance());
         return returnBalance;
     }
+
+    @Override
+    public Map<String, Object> getRestaurantList(Integer pageNum, Integer pageSize) {
+        //这里不需要校验参数为空是因为我们在controller中设置了默认值
+
+        //以下是分页查询的写法
+        Page<Restaurant> page = new Page<>(pageNum, pageSize);
+        restaurantMapper.selectPage(page,new QueryWrapper<Restaurant>()
+                .eq("is_deleted",0)
+                .orderByAsc("id"));
+
+        //封装返回
+        List<Restaurant> records = page.getRecords();
+        long total = page.getTotal();
+        Map<String, Object> res = new HashMap<>();
+        res.put("total", total);
+        res.put("pageNum", pageNum);
+        res.put("pageSize", pageSize);
+        res.put("records", records);
+        return res;
+    }
+
+    //注意看，这个接口的写法和上面的接口几乎一模一样，我只是把restaurant换成了dish
+    @Override
+    public Map<String, Object> getDishList(Integer pageNum, Integer pageSize) {
+        //这里不需要校验参数为空是因为我们在controller中设置了默认值
+
+        //以下是分页查询的写法
+        Page<Dish> page = new Page<>(pageNum, pageSize);
+        //找到存在的restaurant信息，并通过id升序排列展示
+        dishMapper.selectPage(page,new QueryWrapper<Dish>()
+                .eq("is_deleted",0)
+                .orderByAsc("id"));
+
+        //封装返回
+        List<Dish> records = page.getRecords();
+        long total = page.getTotal();
+        Map<String, Object> res = new HashMap<>();
+        res.put("total", total);
+        res.put("pageNum", pageNum);
+        res.put("pageSize", pageSize);
+        res.put("records", records);
+        return res;
+    }
+
+
 }

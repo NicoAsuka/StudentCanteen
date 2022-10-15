@@ -35,5 +35,20 @@ public class StudentController {
         return studentService.addBalance(money);
     }
 
+    @OperateLog(operDesc = "学生端获取商铺列表")
+    @GetMapping("/getRestaurantList")
+    public Map<String, Object> getRestaurantList(
+            @RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
+            @RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize) {
+        return studentService.getRestaurantList(pageNum, pageSize);
+    }
+
+    @OperateLog(operDesc = "学生端获取菜品列表")
+    @GetMapping("/getDishList")
+    public Map<String, Object> getDishList(
+            @RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
+            @RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize) {
+        return studentService.getDishList(pageNum, pageSize);
+    }
 
 }
