@@ -7,7 +7,8 @@ import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.stereotype.Service;
 import sast.freshcup.common.enums.ErrorEnum;
 import sast.freshcup.exception.LocalRunTimeException;
-import sast.freshcup.service.AdminService;
+import sast.freshcup.service.AdminDishService;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +27,6 @@ import static sast.freshcup.interceptor.AccountInterceptor.accountHolder;
  */
 
 @Service
-public class AdminServiceImpl implements AdminService {
+public class AdminDishServiceImpl implements AdminDishService {
 
 }

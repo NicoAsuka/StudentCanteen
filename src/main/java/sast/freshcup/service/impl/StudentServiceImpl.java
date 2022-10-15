@@ -1,5 +1,6 @@
 package sast.freshcup.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,7 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     AccountMapper accountMapper;
 
+
     @Override
     public Map<String, Object> getBalance() {
         //一般来说先做判空校验，若要求不为空的传参为空，则返回error
@@ -35,7 +37,13 @@ public class StudentServiceImpl implements StudentService {
         String username = accountHolder.get().getUsername();
 
         //通过uid获取对应的账户对象
-        Account account = accountMapper.selectById(uid);
+        QueryWrapper<Account> eq = new QueryWrapper<Account>()
+                .eq("uid", uid)
+                .eq("is_deleted", 0);
+        Account account = accountMapper.selectOne(eq);
+        if (account == null){
+            throw new LocalRunTimeException(ErrorEnum.NO_USER);
+        }
         //通过对象得到该对象的账户余额
         Double balance = account.getBalance();
 

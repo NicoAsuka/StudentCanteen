@@ -12,8 +12,8 @@ import sast.freshcup.service.StudentService;
 import java.util.Map;
 
 /**
- * @author: 風楪fy
- * @create: 2022-01-15 17:22
+ * @author: 李林涛
+ * @create: 2022-10-15 17:22
  **/
 @AuthHandle(AuthEnum.STUDENT)
 @RequestMapping("/student")

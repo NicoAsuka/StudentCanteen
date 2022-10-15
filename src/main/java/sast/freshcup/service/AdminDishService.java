@@ -12,7 +12,7 @@ import java.util.Map;
  * @Description:
  */
 
-public interface AdminService {
+public interface AdminDishService {
 
 }
 
