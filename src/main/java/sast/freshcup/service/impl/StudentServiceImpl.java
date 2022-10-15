@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 import sast.freshcup.common.enums.ErrorEnum;
 import sast.freshcup.entity.Account;
 import sast.freshcup.entity.Dish;
+import sast.freshcup.entity.Order;
 import sast.freshcup.entity.Restaurant;
 import sast.freshcup.exception.LocalRunTimeException;
 import sast.freshcup.mapper.AccountMapper;
 import sast.freshcup.mapper.DishMapper;
+import sast.freshcup.mapper.OrderMapper;
 import sast.freshcup.mapper.RestaurantMapper;
 import sast.freshcup.service.StudentService;
 
@@ -19,6 +21,7 @@ import sast.freshcup.service.StudentService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import static sast.freshcup.interceptor.AccountInterceptor.accountHolder;
 
@@ -37,6 +40,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     DishMapper dishMapper;
+
+    @Autowired
+    OrderMapper orderMapper;
 
 
 
@@ -141,6 +147,51 @@ public class StudentServiceImpl implements StudentService {
         res.put("pageNum", pageNum);
         res.put("pageSize", pageSize);
         res.put("records", records);
+        return res;
+    }
+
+    @Override
+    public Map<String, Object> createOrder(String dishesId) {
+        //传参判空
+        if (dishesId == null){
+            throw new LocalRunTimeException(ErrorEnum.NO_DISHESID);
+        }
+
+        //初始化一个totalPrice用于记录订单总金额
+        Double totalPrice = 0.0;
+
+
+        //解析dishesId字符串，遍历查询dish，计算totalPrice
+        String[] dishesIdArray = dishesId.split(",");
+        for (String dishId : dishesIdArray) {
+            boolean matches = Pattern.compile("[1-9]").matcher(dishId).matches();
+            if (!matches) {
+                throw new LocalRunTimeException(ErrorEnum.DISHESID_ERROR);
+            }
+
+            Integer integer = Integer.valueOf(dishId);
+            Dish dish = dishMapper.selectById(integer);
+            totalPrice += dish.getPrice();
+        }
+
+        //新建一个对象类
+        Order order = new Order();
+        //将参数传入
+        order.setDishesId(dishesId);
+        order.setUid(accountHolder.get().getUid());
+        order.setIsDeleted(0);
+        order.setTotalPrice(totalPrice);
+
+        //TODO 有点bug，明天修一下
+//        //将新的订单插入数据库
+//        orderMapper.insert(order);
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("uid",accountHolder.get().getUid());
+        res.put("username",accountHolder.get().getUsername());
+        //TODO 能根据id一起返回菜品名称和价格吗？
+        res.put("dishesId",dishesId);
+        res.put("totalPrice",totalPrice);
         return res;
     }
 

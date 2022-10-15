@@ -7,6 +7,7 @@ import sast.freshcup.annotation.AuthHandle;
 import sast.freshcup.annotation.OperateLog;
 import sast.freshcup.common.enums.AuthEnum;
 import sast.freshcup.entity.Account;
+import sast.freshcup.entity.Order;
 import sast.freshcup.service.StudentService;
 
 import java.util.Map;
@@ -51,4 +52,9 @@ public class StudentController {
         return studentService.getDishList(pageNum, pageSize);
     }
 
+    @OperateLog(operDesc = "学生端创建订单")
+    @PostMapping("/createOrder")
+    public Map<String, Object> createOrder(@RequestParam String dishesId) {
+        return studentService.createOrder(dishesId);
+    }
 }

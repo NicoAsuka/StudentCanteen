@@ -18,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Order {
-    @NotNull(message = "订单id不能为 null")
+
     private Integer id;
 
     @NotNull(message = "用户uid不能为 null")
