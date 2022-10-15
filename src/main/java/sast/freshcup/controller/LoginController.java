@@ -90,7 +90,7 @@ public class LoginController {
         Account accountFromDB = accountMapper.selectOne(queryWrapper);
         if (accountFromDB == null) {
             throw new LocalRunTimeException("账号不存在");
-        } else if (!SecureUtil.md5(account.getPassword()).equals(accountFromDB.getPassword())) {
+        } else if (!account.getPassword().equals(accountFromDB.getPassword())) {
             throw new LocalRunTimeException("密码错误");
         }
         String token = jwtUtil.generateToken(accountFromDB);

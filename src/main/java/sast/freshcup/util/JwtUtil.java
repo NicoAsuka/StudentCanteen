@@ -64,7 +64,7 @@ public class JwtUtil {
     public Account getAccount(String token) {
         Map<String, Claim> claims = this.getClaims(token);
         Account account = new Account();
-        account.setUid(claims.get("uid").asLong());
+        account.setUid(claims.get("uid").asInt());
         account.setUsername(claims.get("username").asString());
         account.setRole(claims.get("role").asInt());
         return account;

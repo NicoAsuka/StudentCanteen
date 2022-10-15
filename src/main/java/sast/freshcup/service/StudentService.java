@@ -8,4 +8,7 @@ import java.util.Map;
  **/
 public interface StudentService {
 
+    Map<String, Object> getBalance();
+
+    Map<String, Object> addBalance(Integer money);
 }

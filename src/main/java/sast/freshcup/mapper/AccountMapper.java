@@ -16,8 +16,4 @@ import java.util.List;
 @Repository
 public interface AccountMapper extends BaseMapper<Account> {
 
-    List<UserSearch> getUsersByContestId(Long contestId, Integer pageNum, Integer pageSize);
-
-    Long getUsersNumberByContestId(Long contestId);
-
 }
