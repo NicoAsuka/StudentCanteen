@@ -3,7 +3,7 @@ package sast.freshcup.annotation;
 import sast.freshcup.common.enums.AuthEnum;
 
 import java.lang.annotation.*;
-
+//身份验证
 /**
  * @author: 風楪fy
  * @create: 2022-01-19 22:50

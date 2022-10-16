@@ -12,5 +12,6 @@ import sast.freshcup.common.enums.AuthEnum;
 @RequestMapping("/admin")
 @AuthHandle(AuthEnum.ADMIN)
 public class AdminDishController {
+    private AdminDishController adminDishController;
 
 }
