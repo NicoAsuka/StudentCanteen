@@ -81,7 +81,7 @@ public class AdminDishServiceImpl implements AdminDishService {
         res.put("username",accountHolder.get().getUsername());
         //TODO 能根据id一起返回菜品名称和价格吗？
         res.put("dishesId",name);
-        res.put("totalPrice",totalPrice);
+        res.put("totalPrice",price);
         return res;
     }
 }
