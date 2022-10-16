@@ -1,6 +1,8 @@
 package sast.freshcup.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,6 +20,7 @@ import javax.validation.constraints.NotNull;
 @EqualsAndHashCode
 public class Restaurant {
     @NotNull(message = "菜品id不能为 null")
+    @TableId(type = IdType.AUTO)
     private Integer id;
 
     @NotNull(message = "商铺名称不能为 null")

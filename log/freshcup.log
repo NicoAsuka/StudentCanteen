@@ -177,3 +177,119 @@ Caused by: io.lettuce.core.protocol.RedisProtocolException: Invalid first byte: 
 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
 	... 15 common frames omitted
 
+2022-10-16 13:04:32.816  INFO 3384 --- [lettuce-eventExecutorLoop-1-2] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was 120.55.163.50:9736
+2022-10-16 13:04:32.945  INFO 3384 --- [lettuce-nioEventLoop-4-1] i.l.core.protocol.ReconnectionHandler    : Reconnected to 120.55.163.50:9736
+2022-10-16 13:47:22.871  WARN 3384 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=28m3s480ms604µs900ns).
+2022-10-16 13:52:23.365  INFO 3384 --- [lettuce-nioEventLoop-4-1] io.lettuce.core.protocol.CommandHandler  : null Unexpected exception during request: java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+
+java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+	at java.base/sun.nio.ch.SocketDispatcher.read0(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:43) ~[na:na]
+	at java.base/sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:276) ~[na:na]
+	at java.base/sun.nio.ch.IOUtil.read(IOUtil.java:233) ~[na:na]
+	at java.base/sun.nio.ch.IOUtil.read(IOUtil.java:223) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:358) ~[na:na]
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:253) ~[netty-buffer-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132) ~[netty-buffer-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:350) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:986) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2022-10-16 13:52:23.399  INFO 3384 --- [lettuce-eventExecutorLoop-1-5] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was /120.55.163.50:9736
+2022-10-16 13:52:23.403  WARN 3384 --- [lettuce-nioEventLoop-4-2] i.l.core.protocol.ConnectionWatchdog     : Cannot reconnect to [120.55.163.50:9736]: Network is unreachable: no further information: /120.55.163.50:9736
+
+io.netty.channel.AbstractChannel$AnnotatedSocketException: Network is unreachable: no further information: /120.55.163.50:9736
+Caused by: java.net.SocketException: Network is unreachable: no further information
+	at java.base/sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[na:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:330) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:710) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:986) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2022-10-16 13:52:23.665  INFO 3384 --- [lettuce-nioEventLoop-4-4] i.l.core.protocol.ReconnectionHandler    : Reconnected to 120.55.163.50:9736
+2022-10-16 13:52:26.699  INFO 3384 --- [lettuce-nioEventLoop-4-4] io.lettuce.core.protocol.CommandHandler  : null Unexpected exception during request: java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+
+java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+	at java.base/sun.nio.ch.SocketDispatcher.read0(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:43) ~[na:na]
+	at java.base/sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:276) ~[na:na]
+	at java.base/sun.nio.ch.IOUtil.read(IOUtil.java:233) ~[na:na]
+	at java.base/sun.nio.ch.IOUtil.read(IOUtil.java:223) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:358) ~[na:na]
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:253) ~[netty-buffer-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132) ~[netty-buffer-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:350) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:986) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2022-10-16 13:52:28.791  INFO 3384 --- [lettuce-eventExecutorLoop-1-3] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was 120.55.163.50:9736
+2022-10-16 13:52:29.651  WARN 3384 --- [lettuce-nioEventLoop-4-8] i.l.core.protocol.ConnectionWatchdog     : Cannot reconnect to [120.55.163.50:9736]: io.lettuce.core.protocol.RedisProtocolException: Invalid first byte: 72 (H) at buffer index 1 decoding using null
+
+java.util.concurrent.CompletionException: io.lettuce.core.protocol.RedisProtocolException: Invalid first byte: 72 (H) at buffer index 1 decoding using null
+	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:331) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:346) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1063) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:506) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.completeExceptionally(CompletableFuture.java:2088) ~[na:na]
+	at io.lettuce.core.RedisHandshake.lambda$tryHandshakeResp3$1(RedisHandshake.java:105) ~[lettuce-core-6.1.5.RELEASE.jar:6.1.5.RELEASE]
+	at java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:859) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$UniWhenComplete.tryFire(CompletableFuture.java:837) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:506) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture.completeExceptionally(CompletableFuture.java:2088) ~[na:na]
+	at io.lettuce.core.protocol.AsyncCommand.doCompleteExceptionally(AsyncCommand.java:139) ~[lettuce-core-6.1.5.RELEASE.jar:6.1.5.RELEASE]
+	at io.lettuce.core.protocol.AsyncCommand.completeExceptionally(AsyncCommand.java:132) ~[lettuce-core-6.1.5.RELEASE.jar:6.1.5.RELEASE]
+	at io.lettuce.core.protocol.CommandHandler.exceptionCaught(CommandHandler.java:276) ~[lettuce-core-6.1.5.RELEASE.jar:6.1.5.RELEASE]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeExceptionCaught(AbstractChannelHandlerContext.java:302) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:381) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:986) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: io.lettuce.core.protocol.RedisProtocolException: Invalid first byte: 72 (H) at buffer index 1 decoding using null
+	at io.lettuce.core.protocol.RedisStateMachine.readReplyType(RedisStateMachine.java:610) ~[lettuce-core-6.1.5.RELEASE.jar:6.1.5.RELEASE]
+	at io.lettuce.core.protocol.RedisStateMachine.doDecode(RedisStateMachine.java:325) ~[lettuce-core-6.1.5.RELEASE.jar:6.1.5.RELEASE]
+	at io.lettuce.core.protocol.RedisStateMachine.decode(RedisStateMachine.java:295) ~[lettuce-core-6.1.5.RELEASE.jar:6.1.5.RELEASE]
+	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:841) ~[lettuce-core-6.1.5.RELEASE.jar:6.1.5.RELEASE]
+	at io.lettuce.core.protocol.CommandHandler.decode0(CommandHandler.java:792) ~[lettuce-core-6.1.5.RELEASE.jar:6.1.5.RELEASE]
+	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:775) ~[lettuce-core-6.1.5.RELEASE.jar:6.1.5.RELEASE]
+	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:658) ~[lettuce-core-6.1.5.RELEASE.jar:6.1.5.RELEASE]
+	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:598) ~[lettuce-core-6.1.5.RELEASE.jar:6.1.5.RELEASE]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+	... 15 common frames omitted
+
+2022-10-16 13:52:33.030  INFO 3384 --- [lettuce-nioEventLoop-4-5] i.l.core.protocol.ReconnectionHandler    : Reconnected to 120.55.163.50:9736
+2022-10-16 16:23:45.566  WARN 3384 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m20s282ms124µs800ns).
+2022-10-16 16:32:18.823  INFO 3384 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-10-16 16:32:18.853  INFO 3384 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
