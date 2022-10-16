@@ -931,3 +931,34 @@ java.sql.SQLSyntaxErrorException: Unknown column 'id' in 'order clause'
 2022-10-16 20:58:22.077  INFO 13936 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
 2022-10-16 20:58:22.173  INFO 13936 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
 2022-10-16 20:58:22.205  INFO 13936 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : Started SastFreshCupApplication in 5.679 seconds (JVM running for 7.679)
+2022-10-16 20:58:39.895  INFO 11396 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : Starting SastFreshCupApplication using Java 11.0.16.1 on LAPTOP-VF8GDU5I with PID 11396 (E:\javaProgram\StudentCanteen\target\classes started by 86198 in E:\javaProgram\StudentCanteen)
+2022-10-16 20:58:39.896  INFO 11396 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : The following profiles are active: prod
+2022-10-16 20:58:39.954  INFO 11396 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-10-16 20:58:39.954  INFO 11396 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-10-16 20:58:40.937  INFO 11396 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-10-16 20:58:40.941  INFO 11396 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-16 20:58:40.997  INFO 11396 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29 ms. Found 0 Redis repository interfaces.
+2022-10-16 20:58:42.213  INFO 11396 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2022-10-16 20:58:42.221  INFO 11396 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-10-16 20:58:42.221  INFO 11396 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-10-16 20:58:42.392  INFO 11396 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-16 20:58:42.392  INFO 11396 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2437 ms
+2022-10-16 20:58:44.521  INFO 11396 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-10-16 20:58:44.580  INFO 11396 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2022-10-16 20:58:44.600  INFO 11396 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : Started SastFreshCupApplication in 5.256 seconds (JVM running for 7.398)
+2022-10-16 20:58:50.887  INFO 11396 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-16 20:58:50.888  INFO 11396 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-10-16 20:58:50.890  INFO 11396 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-10-16 20:58:52.925  INFO 11396 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-10-16 20:58:53.665  INFO 11396 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-10-16 20:58:54.296  INFO 11396 --- [http-nio-8081-exec-1] sast.freshcup.aop.OperateLogAspect       : 
+===========捕获响应===========
+操作描述：获取学生列表
+请求平台：PC
+请求地址：/admin/student/getStudentList
+请求参数：{pageSize=5, pageNum=1}
+请求返回：{total=2, records=[Account(uid=1, username=admin1, password=admin1, balance=123.0, role=1), Account(uid=2, username=student1, password=student1, balance=243.0, role=0)], pageSize=5, pageNum=1}
+请求用户：Account(uid=1, username=admin1, password=null, balance=null, role=1)
+请求耗时：488ms
+请求UA：浏览器:Unknown null，os:Unknown null，是否移动设备:false
+===========释放响应===========
