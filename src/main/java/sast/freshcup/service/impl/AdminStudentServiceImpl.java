@@ -31,6 +31,7 @@ public class AdminStudentServiceImpl implements AdminStudentService {
                 .eq("is_deleted",0)
                 .orderByAsc("uid"));
         //封装返回
+
         List<Account> records = page.getRecords();
         long total = page.getTotal();
         Map<String, Object> res = new HashMap<>();
