@@ -1621,3 +1621,5 @@ Caused by: io.lettuce.core.protocol.RedisProtocolException: Invalid first byte: 
 2022-10-16 19:24:41.419  INFO 9136 --- [lettuce-eventExecutorLoop-1-4] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was 120.55.163.50:9736
 2022-10-16 19:24:41.461  INFO 9136 --- [lettuce-nioEventLoop-4-4] i.l.core.protocol.ReconnectionHandler    : Reconnected to 120.55.163.50:9736
 2022-10-16 21:00:58.513  WARN 9136 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m26s577ms748µs300ns).
+2022-10-16 21:05:14.965  INFO 9136 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-10-16 21:05:14.977  INFO 9136 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
