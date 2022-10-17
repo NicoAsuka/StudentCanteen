@@ -10,7 +10,7 @@ import sast.freshcup.service.AdminDishService;
 import java.util.Map;
 
 /**
- * @author: 孙帅
+ * @author: 李林涛
  * @create: 2022-10-15 17:22
  **/
 @RestController
@@ -22,8 +22,8 @@ public class AdminDishController {
 
     @OperateLog(operDesc = "管理端创建菜品")
     @PostMapping("/createDish")
-    public Map<String, Object> createDish(@RequestParam String dishesId) {
-        return adminDishService.createDish(dishesId);
+    public Map<String, Object> createDish(@RequestParam String name, Integer restaurantId, String description, Double price) {
+        return adminDishService.createDish(name,restaurantId, description, price);
     }
 
     @OperateLog(operDesc = "管理端获取菜品列表")
