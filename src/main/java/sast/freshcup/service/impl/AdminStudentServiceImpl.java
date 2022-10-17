@@ -49,9 +49,6 @@ public class AdminStudentServiceImpl implements AdminStudentService {
     @Override
     public Map<String, Object> getStudent(Integer uid) {
         //一般来说先做判空校验，若要求不为空的传参为空，则返回error
-
-        
-
         //通过uid获取对应的账户对象
         QueryWrapper<Account> eq = new QueryWrapper<Account>()
                 .eq("uid", uid)
@@ -71,5 +68,12 @@ public class AdminStudentServiceImpl implements AdminStudentService {
         returnStudent.put("username",username);
         returnStudent.put("balance",balance);
         return returnStudent;
+    }
+
+    public  String deleteStudent(Integer id){
+        Account account = accountMapper.selectById(id);
+        account.setIsDeleted(1);
+        accountMapper.updateById(account);
+        return "成功删除学生信息";
     }
 }

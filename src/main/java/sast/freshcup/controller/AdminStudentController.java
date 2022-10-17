@@ -35,9 +35,9 @@ public class AdminStudentController {
     }
 
 
-    //@OperateLog(operDesc = "删除学生信息")
-    //@PostMapping("/deleteStudent")
-    //public String deleteOrder(Integer id) {
-    //    return adminStudentService.deleteStudent(id);
-    //}
+    @OperateLog(operDesc = "删除学生信息")
+    @PostMapping("/deleteStudent")
+    public String deleteStudent(Integer id) {
+        return adminStudentService.deleteStudent(id);
+    }
 }

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -52,6 +53,8 @@ public class Account implements Serializable {
      */
     @ExcelIgnore
     private Integer role;
+    @TableField(value = "is_deleted")
+    private Integer isDeleted;
 
     public Account(String username, String password, Integer role) {
         this.username = username;
