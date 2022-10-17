@@ -17,12 +17,12 @@ import java.util.Map;
 @RequestMapping("/admin")
 @AuthHandle(AuthEnum.ADMIN)
 public class AdminDishController {
-    @Autowired
+    /**   @Autowired
     private AdminDishService adminDishService;
 
     @OperateLog(operDesc = "管理端创建菜品")
     @PostMapping("/createDish")
-    public Map<String, Object> createDish(@RequestParam String dishesId) {
+   public Map<String, Object> createDish(@RequestParam String dishesId) {
         return adminDishService.createDish(dishesId);
     }
 
@@ -32,6 +32,6 @@ public class AdminDishController {
             @RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
             @RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize) {
         return adminDishService.getDishList(pageNum, pageSize);
-    }
+    }*/
 
 }

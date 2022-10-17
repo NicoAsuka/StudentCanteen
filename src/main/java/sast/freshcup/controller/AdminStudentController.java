@@ -28,6 +28,12 @@ public class AdminStudentController {
         return adminStudentService.getStudentList(pageNum,pageSize);
     }
 
+    @OperateLog(operDesc = "查询学生信息")
+    @GetMapping("/getStudent")
+    public Map<String, Object> getStudent(Integer uid) {
+        return adminStudentService.getStudent(uid);
+    }
+
 
     //@OperateLog(operDesc = "删除学生信息")
     //@PostMapping("/deleteStudent")
