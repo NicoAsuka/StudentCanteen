@@ -10,7 +10,7 @@ import sast.freshcup.service.AdminDishService;
 import java.util.Map;
 
 /**
- * @author: 李林涛
+ * @author: 孙帅
  * @create: 2022-10-15 17:22
  **/
 @RestController

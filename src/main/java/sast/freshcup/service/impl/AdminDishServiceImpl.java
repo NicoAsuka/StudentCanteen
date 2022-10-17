@@ -25,9 +25,8 @@ import static sast.freshcup.interceptor.AccountInterceptor.accountHolder;
 /**
  * Created with IntelliJ IDEA.
  *
- * @Author: Acow337
- * @Date: 2022/01/20/20:12
- * @Description:
+ * @Author: 孙帅
+ * @Date: 2022/10/17/17:00
  */
 
 @Service
@@ -62,8 +61,8 @@ public class AdminDishServiceImpl implements AdminDishService {
     public Map<String, Object> createDish(String name, Integer restaurantId, String description, Double price) {
 
         //传参判空
-        if (name == null){
-            throw new LocalRunTimeException(ErrorEnum.NO_DISHESID);
+        if (name == null||restaurantId == null||description == null||price == 0.0){
+            throw new LocalRunTimeException(ErrorEnum.PARAMS_LOSS);
         }
 
         //新建一个对象类
