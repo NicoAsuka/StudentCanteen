@@ -9,5 +9,8 @@ import java.util.Map;
 public interface AdminStudentService {
     Map<String,Object> getStudentList(Integer pageNum, Integer pageSize);
 
+    Map<String,Object> getStudent(Integer uid);
+    String deleteStudent(Integer id);
+
 
 }

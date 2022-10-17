@@ -22,7 +22,10 @@ public class AdminDishController {
 
     @OperateLog(operDesc = "管理端创建菜品")
     @PostMapping("/createDish")
-    public Map<String, Object> createDish(@RequestParam String name, Integer restaurantId, String description, Double price) {
+    public Map<String, Object> createDish(@RequestParam String name,
+                                          @RequestParam Integer restaurantId,
+                                          @RequestParam String description,
+                                          @RequestParam Double price) {
         return adminDishService.createDish(name,restaurantId, description, price);
     }
 

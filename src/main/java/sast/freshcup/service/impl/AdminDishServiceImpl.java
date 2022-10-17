@@ -60,6 +60,10 @@ public class AdminDishServiceImpl implements AdminDishService {
     @Override
     public Map<String, Object> createDish(String name, Integer restaurantId, String description, Double price) {
 
+        System.out.println(name);
+        System.out.println(restaurantId);
+        System.out.println(description);
+        System.out.println(price);
         //传参判空
         if (name == null||restaurantId == null||description == null||price == 0.0){
             throw new LocalRunTimeException(ErrorEnum.PARAMS_LOSS);
