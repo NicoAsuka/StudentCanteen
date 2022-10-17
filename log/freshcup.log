@@ -1022,3 +1022,5 @@ java.lang.NullPointerException: null
 请求耗时：153ms
 请求UA：浏览器:Unknown null，os:Unknown null，是否移动设备:false
 ===========释放响应===========
+2022-10-17 17:28:22.009  INFO 14808 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-10-17 17:28:22.022  INFO 14808 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
