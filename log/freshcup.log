@@ -31,3 +31,126 @@
 ===========释放响应===========
 2022-10-18 17:47:09.198  INFO 9268 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2022-10-18 17:47:09.209  INFO 9268 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-10-18 18:57:08.200  INFO 7380 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : Starting SastFreshCupApplication using Java 11.0.16.1 on LAPTOP-2IF1G5B3 with PID 7380 (D:\javaCode\StudentCanteen\target\classes started by QQ238 in D:\javaCode\StudentCanteen)
+2022-10-18 18:57:08.202  INFO 7380 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : The following profiles are active: prod
+2022-10-18 18:57:08.240  INFO 7380 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-10-18 18:57:08.240  INFO 7380 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-10-18 18:57:08.737  INFO 7380 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-10-18 18:57:08.739  INFO 7380 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-18 18:57:08.760  INFO 7380 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2022-10-18 18:57:09.286  INFO 7380 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2022-10-18 18:57:09.293  INFO 7380 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-10-18 18:57:09.294  INFO 7380 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-10-18 18:57:09.370  INFO 7380 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-18 18:57:09.371  INFO 7380 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1131 ms
+2022-10-18 18:57:10.000  WARN 7380 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminRestaurantController': Unsatisfied dependency expressed through field 'adminRestaurantService'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'sast.freshcup.service.AdminRestaurantService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2022-10-18 18:57:10.014  INFO 7380 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-10-18 18:57:10.024  INFO 7380 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-10-18 18:57:10.054 ERROR 7380 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field adminRestaurantService in sast.freshcup.controller.AdminRestaurantController required a bean of type 'sast.freshcup.service.AdminRestaurantService' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'sast.freshcup.service.AdminRestaurantService' in your configuration.
+
+2022-10-18 19:01:24.960  INFO 9544 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : Starting SastFreshCupApplication using Java 11.0.16.1 on LAPTOP-2IF1G5B3 with PID 9544 (D:\javaCode\StudentCanteen\target\classes started by QQ238 in D:\javaCode\StudentCanteen)
+2022-10-18 19:01:24.961  INFO 9544 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : The following profiles are active: prod
+2022-10-18 19:01:24.996  INFO 9544 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-10-18 19:01:24.997  INFO 9544 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-10-18 19:01:25.496  INFO 9544 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-10-18 19:01:25.498  INFO 9544 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-18 19:01:25.519  INFO 9544 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+2022-10-18 19:01:26.044  INFO 9544 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2022-10-18 19:01:26.052  INFO 9544 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-10-18 19:01:26.052  INFO 9544 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-10-18 19:01:26.129  INFO 9544 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-18 19:01:26.129  INFO 9544 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1132 ms
+2022-10-18 19:01:27.282  INFO 9544 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-10-18 19:01:27.325  INFO 9544 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2022-10-18 19:01:27.337  INFO 9544 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : Started SastFreshCupApplication in 2.681 seconds (JVM running for 3.362)
+2022-10-18 19:03:20.607  INFO 9544 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-18 19:03:20.608  INFO 9544 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-10-18 19:03:20.609  INFO 9544 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-10-18 19:03:21.422  INFO 9544 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-10-18 19:03:21.778  INFO 9544 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-10-18 19:03:22.039  INFO 9544 --- [http-nio-8081-exec-1] sast.freshcup.aop.OperateLogAspect       : 
+===========捕获响应===========
+操作描述：管理端获取商店列表
+请求平台：PC
+请求地址：/admin/restaurant/getRestaurantList
+请求参数：{pageSize=1, pageNum=5}
+请求返回：{total=10, records=[Restaurant(id=5, name=韩記通讯有限责任公司, description=电讯業, location=中国成都市锦江区红星路三段755号29栋, isDeleted=0)], pageSize=1, pageNum=5}
+请求用户：Account(uid=1, username=admin1, password=null, balance=null, role=1, isDeleted=null)
+请求耗时：157ms
+请求UA：浏览器:Unknown null，os:Unknown null，是否移动设备:false
+===========释放响应===========
+2022-10-18 19:03:26.756  INFO 9544 --- [http-nio-8081-exec-2] sast.freshcup.aop.OperateLogAspect       : 
+===========捕获响应===========
+操作描述：管理端获取商店列表
+请求平台：PC
+请求地址：/admin/restaurant/getRestaurantList
+请求参数：{pageSize=1, pageNum=5}
+请求返回：{total=10, records=[Restaurant(id=5, name=韩記通讯有限责任公司, description=电讯業, location=中国成都市锦江区红星路三段755号29栋, isDeleted=0)], pageSize=1, pageNum=5}
+请求用户：Account(uid=1, username=admin1, password=null, balance=null, role=1, isDeleted=null)
+请求耗时：66ms
+请求UA：浏览器:Unknown null，os:Unknown null，是否移动设备:false
+===========释放响应===========
+2022-10-18 19:03:56.621  INFO 9544 --- [http-nio-8081-exec-3] sast.freshcup.aop.OperateLogAspect       : 
+===========捕获响应===========
+操作描述：管理端获取商店列表
+请求平台：PC
+请求地址：/admin/restaurant/getRestaurantList
+请求参数：{pageSize=1, pageNum=5}
+请求返回：{total=10, records=[Restaurant(id=5, name=韩記通讯有限责任公司, description=电讯業, location=中国成都市锦江区红星路三段755号29栋, isDeleted=0)], pageSize=1, pageNum=5}
+请求用户：Account(uid=1, username=admin1, password=null, balance=null, role=1, isDeleted=null)
+请求耗时：64ms
+请求UA：浏览器:Unknown null，os:Unknown null，是否移动设备:false
+===========释放响应===========
+2022-10-18 19:04:16.951  INFO 9544 --- [http-nio-8081-exec-4] sast.freshcup.aop.OperateLogAspect       : 
+===========捕获响应===========
+操作描述：管理端获取商店列表
+请求平台：PC
+请求地址：/admin/restaurant/getRestaurantList
+请求参数：{pageSize=1, pageNum=6}
+请求返回：{total=10, records=[Restaurant(id=6, name=江記工业有限责任公司, description=工业, location=中国成都市锦江区红星路三段723号7室, isDeleted=0)], pageSize=1, pageNum=6}
+请求用户：Account(uid=1, username=admin1, password=null, balance=null, role=1, isDeleted=null)
+请求耗时：56ms
+请求UA：浏览器:Unknown null，os:Unknown null，是否移动设备:false
+===========释放响应===========
+2022-10-18 19:04:31.309  INFO 9544 --- [http-nio-8081-exec-5] sast.freshcup.aop.OperateLogAspect       : 
+===========捕获响应===========
+操作描述：管理端获取商店列表
+请求平台：PC
+请求地址：/admin/restaurant/getRestaurantList
+请求参数：{pageSize=1, pageNum=4}
+请求返回：{total=10, records=[Restaurant(id=4, name=孙記有限责任公司, description=金融服务业, location=中国深圳罗湖区田贝一路18号26号楼, isDeleted=0)], pageSize=1, pageNum=4}
+请求用户：Account(uid=1, username=admin1, password=null, balance=null, role=1, isDeleted=null)
+请求耗时：56ms
+请求UA：浏览器:Unknown null，os:Unknown null，是否移动设备:false
+===========释放响应===========
+2022-10-18 19:07:41.991  INFO 9544 --- [http-nio-8081-exec-7] sast.freshcup.aop.OperateLogAspect       : 
+===========捕获响应===========
+操作描述：管理端获取商店列表
+请求平台：PC
+请求地址：/admin/restaurant/getRestaurantList
+请求参数：{pageSize=1, pageNum=5}
+请求返回：{total=10, records=[Restaurant(id=5, name=韩記通讯有限责任公司, description=电讯業, location=中国成都市锦江区红星路三段755号29栋, isDeleted=0)], pageSize=1, pageNum=5}
+请求用户：Account(uid=1, username=admin1, password=null, balance=null, role=1, isDeleted=null)
+请求耗时：80ms
+请求UA：浏览器:Unknown null，os:Unknown null，是否移动设备:false
+===========释放响应===========
+2022-10-18 19:08:12.902  INFO 9544 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-10-18 19:08:12.910  INFO 9544 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
