@@ -19,4 +19,6 @@ public interface StudentService {
     Map<String, Object> createOrder(String dishesId);
 
     String deleteOrder(Integer id);
+
+    Map<String, Object> updateOrderList(Integer id, String dishesId);
 }

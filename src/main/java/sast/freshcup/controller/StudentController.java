@@ -60,4 +60,11 @@ public class StudentController {
     public String deleteOrder(Integer id) {
         return studentService.deleteOrder(id);
     }
+
+    @OperateLog(operDesc = "学生端取消订单")
+    @PostMapping("/updateOrderList")
+    public Map<String, Object> updateOrderList(@RequestParam Integer id,
+                                  @RequestParam String dishesId) {
+        return studentService.updateOrderList(id,dishesId);
+    }
 }

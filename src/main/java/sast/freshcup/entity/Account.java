@@ -46,6 +46,8 @@ public class Account implements Serializable {
     @NotNull(message = "账户余额不能为 null")
     private Double balance;
 
+    @NotNull(message = "is_deleted")
+    private Integer isDeleted;
 
     /**
      * student/admin
@@ -53,8 +55,6 @@ public class Account implements Serializable {
      */
     @ExcelIgnore
     private Integer role;
-    @TableField(value = "is_deleted")
-    private Integer isDeleted;
 
     public Account(String username, String password, Integer role) {
         this.username = username;

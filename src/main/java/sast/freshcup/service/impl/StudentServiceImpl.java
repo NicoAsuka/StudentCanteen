@@ -165,6 +165,7 @@ public class StudentServiceImpl implements StudentService {
         String[] dishesIdArray = dishesId.split(",");
         for (String dishId : dishesIdArray) {
             boolean matches = Pattern.compile("[1-9]").matcher(dishId).matches();
+            //校验dishesId输入是否正确
             if (!matches) {
                 throw new LocalRunTimeException(ErrorEnum.DISHESID_ERROR);
             }
@@ -200,6 +201,11 @@ public class StudentServiceImpl implements StudentService {
         dishOrder.setIsDeleted(1);
         orderMapper.updateById(dishOrder);
         return "成功取消订单";
+    }
+
+    @Override
+    public Map<String, Object> updateOrderList(Integer id, String dishesId) {
+        return null;
     }
 
 
