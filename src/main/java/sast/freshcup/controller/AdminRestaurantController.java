@@ -1,10 +1,7 @@
 package sast.freshcup.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sast.freshcup.annotation.AuthHandle;
 import sast.freshcup.annotation.OperateLog;
 import sast.freshcup.common.enums.AuthEnum;
@@ -32,6 +29,18 @@ public class AdminRestaurantController {
             @RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize) {
         return adminRestaurantService.getRestaurantList(pageNum, pageSize);
     }
+
+    @OperateLog(operDesc = "管理端创建商铺")
+    @PostMapping("/createRestaurant")
+    public Map<String, Object> createDish(@RequestParam String name,
+                                          @RequestParam Integer restaurantId,
+                                          @RequestParam String description,
+                                          @RequestParam String location) {
+        return adminRestaurantService.createRestaurant( name, restaurantId,description,location);
+    }
+
+
+
 
 }
 

@@ -8,4 +8,6 @@ import java.util.Map;
  */
 public interface AdminRestaurantService {
     Map<String, Object> getRestaurantList(Integer pageNum, Integer pageSize);
+
+    Map<String, Object> createRestaurant(String name, Integer restaurantId, String description, String location);
 }

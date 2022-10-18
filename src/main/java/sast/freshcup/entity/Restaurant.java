@@ -19,6 +19,8 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Restaurant {
+    @NotNull(message = "商铺id不能为 null")
+    private Integer restaurantId;
     @NotNull(message = "菜品id不能为 null")
     @TableId(type = IdType.AUTO)
     private Integer id;
