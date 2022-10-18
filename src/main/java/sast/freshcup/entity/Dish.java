@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 @EqualsAndHashCode
 public class Dish {
     @NotNull(message = "菜品id不能为 null")
-    @TableId(type = IdType.AUTO)
+    @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
 
     @NotNull(message = "商铺id不能为 null")

@@ -29,6 +29,22 @@ public class AdminDishController {
         return adminDishService.createDish(name,restaurantId, description, price);
     }
 
+//    @OperateLog(operDesc = "管理端修改菜品")
+//    @PostMapping("/reviseDish")
+//    public Map<String, Object> reviseDish(@RequestParam String name,
+//                                          @RequestParam Integer restaurantId,
+//                                          @RequestParam String description,
+//                                          @RequestParam Double price) {
+//        return adminDishService.reviseDish(name,restaurantId, description, price);
+//    }
+
+
+    @OperateLog(operDesc = "管理端删除菜品")
+    @PostMapping("/deleteDish")
+    public String deleteDish(Integer id) {
+        return adminDishService.deleteDish(id);
+    }
+
     @OperateLog(operDesc = "管理端获取菜品列表")
     @GetMapping("/getDishList")
     public Map<String, Object> getDishList(
