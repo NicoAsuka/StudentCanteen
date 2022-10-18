@@ -55,7 +55,54 @@ public class AdminDishServiceImpl implements AdminDishService {
             return res;
     }
 
+    @Override
+    public Map<String, Object> updateDish(Integer id,String name, Integer restaurantId, String description, Double price){
+        //通过id调出需修改的dish对象
+        Dish dish = dishMapper.selectById(id);
 
+
+        if (dish.getIsDeleted() == 1){
+            Map<String, Object> res = new HashMap<>();
+            res.put("id",dish.getId());
+            res.put("dishesId",name);
+            res.put("RestaurantId",dish.getRestaurantId());
+            res.put("description",dish.getDescription());
+            res.put("Price",price);
+            return res;
+        }
+        //传参判空，不能全部参数都空
+        if (name == null && restaurantId == null && description == null && price == 0.0){
+            throw new LocalRunTimeException(ErrorEnum.PARAMS_LOSS);
+        }
+
+        if(name != null){
+            dish.setName(name);
+        }
+
+        if (price != null){
+            dish.setPrice(price);
+        }
+
+        if (restaurantId != null){
+            dish.setRestaurantId(restaurantId);
+        }
+
+        if (description != null){
+            dish.setDescription(description);
+        }
+        dish.setIsDeleted(0);
+
+        dishMapper.updateById(dish);
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("id",dish.getId());
+        res.put("dishesId",name);
+        res.put("RestaurantId",dish.getRestaurantId());
+        res.put("description",dish.getDescription());
+        res.put("Price",price);
+        return res;
+
+    }
 
     @Override
     public Map<String, Object> createDish(String name, Integer restaurantId, String description, Double price) {
@@ -82,11 +129,11 @@ public class AdminDishServiceImpl implements AdminDishService {
         dishMapper.insert(dish);
 
         Map<String, Object> res = new HashMap<>();
-        res.put("uid",accountHolder.get().getUid());
-        res.put("username",accountHolder.get().getUsername());
-        //TODO 能根据id一起返回菜品名称和价格吗？
+        res.put("id",dish.getId());
         res.put("dishesId",name);
-        res.put("totalPrice",price);
+        res.put("RestaurantId",dish.getRestaurantId());
+        res.put("description",dish.getDescription());
+        res.put("Price",price);
         return res;
     }
 
