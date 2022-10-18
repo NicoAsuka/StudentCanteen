@@ -78,6 +78,7 @@ public class AdminStudentServiceImpl implements AdminStudentService {
     }
     public  String changeStudent(Integer id,String newUserName,String newPassword){
         Account account = accountMapper.selectById(id);
+
         account.setUsername(newUserName);
         account.setPassword(newPassword);
         accountMapper.updateById(account);
