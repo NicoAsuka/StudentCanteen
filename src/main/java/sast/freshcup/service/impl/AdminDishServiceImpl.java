@@ -64,10 +64,10 @@ public class AdminDishServiceImpl implements AdminDishService {
         if (dish.getIsDeleted() == 1){
             Map<String, Object> res = new HashMap<>();
             res.put("id",dish.getId());
-            res.put("dishesId",name);
+            res.put("dishesId",dish.getName());
             res.put("RestaurantId",dish.getRestaurantId());
             res.put("description",dish.getDescription());
-            res.put("Price",price);
+            res.put("Price",dish.getPrice());
             return res;
         }
         //传参判空，不能全部参数都空
@@ -96,10 +96,10 @@ public class AdminDishServiceImpl implements AdminDishService {
 
         Map<String, Object> res = new HashMap<>();
         res.put("id",dish.getId());
-        res.put("dishesId",name);
+        res.put("dishesId",dish.getName());
         res.put("RestaurantId",dish.getRestaurantId());
         res.put("description",dish.getDescription());
-        res.put("Price",price);
+        res.put("Price",dish.getPrice());
         return res;
 
     }

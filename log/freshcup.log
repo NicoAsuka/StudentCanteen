@@ -3098,3 +3098,69 @@ sast.freshcup.exception.LocalRunTimeException: 密码错误
 2022-10-14 16:01:11.009  INFO 39596 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
 2022-10-17 11:18:16.641  INFO 14800 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2022-10-17 11:18:16.661  INFO 14800 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-10-18 20:38:21.766  INFO 24076 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : Starting SastFreshCupApplication using Java 11.0.12 on DESKTOP-63TFVLG with PID 24076 (D:\java code\StudentCanteen\target\classes started by DELL in D:\java code\StudentCanteen)
+2022-10-18 20:38:21.767  INFO 24076 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : The following profiles are active: prod
+2022-10-18 20:38:21.839  INFO 24076 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-10-18 20:38:21.839  INFO 24076 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-10-18 20:38:22.757  INFO 24076 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-10-18 20:38:22.759  INFO 24076 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-18 20:38:22.791  INFO 24076 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 0 Redis repository interfaces.
+2022-10-18 20:38:23.688  INFO 24076 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2022-10-18 20:38:23.699  INFO 24076 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-10-18 20:38:23.699  INFO 24076 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-10-18 20:38:23.822  INFO 24076 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-18 20:38:23.822  INFO 24076 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1982 ms
+2022-10-18 20:38:25.849  INFO 24076 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-10-18 20:38:25.930  INFO 24076 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2022-10-18 20:38:25.948  INFO 24076 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : Started SastFreshCupApplication in 4.751 seconds (JVM running for 6.1)
+2022-10-18 20:38:56.367  INFO 24076 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-18 20:38:56.368  INFO 24076 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-10-18 20:38:56.369  INFO 24076 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-10-18 20:38:57.414  INFO 24076 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-10-18 20:38:57.780  INFO 24076 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-10-18 20:38:58.006  INFO 24076 --- [http-nio-8081-exec-1] sast.freshcup.aop.OperateLogAspect       : 
+===========捕获响应===========
+操作描述：管理端修改菜品
+请求平台：PC
+请求地址：/admin/updateDish
+请求参数：{price=null, name=5, description=修改测试, id=12, restaurantId=null}
+请求返回：{Price=null, RestaurantId=1, dishesId=5, description=好吃, id=12}
+请求用户：Account(uid=1, username=admin1, password=null, balance=null, role=1, isDeleted=null)
+请求耗时：101ms
+请求UA：浏览器:Unknown null，os:Unknown null，是否移动设备:false
+===========释放响应===========
+2022-10-18 20:41:18.513  INFO 24076 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-10-18 20:41:18.525  INFO 24076 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-10-18 20:41:33.517  INFO 12016 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : Starting SastFreshCupApplication using Java 11.0.12 on DESKTOP-63TFVLG with PID 12016 (D:\java code\StudentCanteen\target\classes started by DELL in D:\java code\StudentCanteen)
+2022-10-18 20:41:33.519  INFO 12016 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : The following profiles are active: prod
+2022-10-18 20:41:33.597  INFO 12016 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-10-18 20:41:33.597  INFO 12016 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-10-18 20:41:34.515  INFO 12016 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-10-18 20:41:34.517  INFO 12016 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-18 20:41:34.553  INFO 12016 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 0 Redis repository interfaces.
+2022-10-18 20:41:35.393  INFO 12016 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2022-10-18 20:41:35.403  INFO 12016 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-10-18 20:41:35.404  INFO 12016 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-10-18 20:41:35.515  INFO 12016 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-18 20:41:35.516  INFO 12016 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1918 ms
+2022-10-18 20:41:37.593  INFO 12016 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-10-18 20:41:37.668  INFO 12016 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2022-10-18 20:41:37.687  INFO 12016 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : Started SastFreshCupApplication in 4.804 seconds (JVM running for 6.201)
+2022-10-18 20:41:43.927  INFO 12016 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-18 20:41:43.928  INFO 12016 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-10-18 20:41:43.930  INFO 12016 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-10-18 20:41:44.958  INFO 12016 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-10-18 20:41:45.394  INFO 12016 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-10-18 20:41:45.623  INFO 12016 --- [http-nio-8081-exec-1] sast.freshcup.aop.OperateLogAspect       : 
+===========捕获响应===========
+操作描述：管理端修改菜品
+请求平台：PC
+请求地址：/admin/updateDish
+请求参数：{price=null, name=5, description=修改测试, id=12, restaurantId=null}
+请求返回：{Price=12.4, RestaurantId=1, dishesId=g刚刚, description=好吃, id=12}
+请求用户：Account(uid=1, username=admin1, password=null, balance=null, role=1, isDeleted=null)
+请求耗时：100ms
+请求UA：浏览器:Unknown null，os:Unknown null，是否移动设备:false
+===========释放响应===========
+2022-10-18 20:41:53.861  INFO 12016 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-10-18 20:41:53.896  INFO 12016 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
