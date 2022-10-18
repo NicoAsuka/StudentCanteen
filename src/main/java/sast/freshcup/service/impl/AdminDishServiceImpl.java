@@ -89,4 +89,12 @@ public class AdminDishServiceImpl implements AdminDishService {
         res.put("totalPrice",price);
         return res;
     }
+
+    @Override
+    public String deleteDish(Integer id) {
+        Dish dish = dishMapper.selectById(id);
+        dish.setIsDeleted(1);
+        dishMapper.updateById(dish);
+        return "成功删除菜品";
+    }
 }
