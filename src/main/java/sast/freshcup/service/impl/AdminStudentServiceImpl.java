@@ -18,6 +18,7 @@ import java.util.Map;
 
 import static sast.freshcup.interceptor.AccountInterceptor.accountHolder;
 
+
 /**
  * @author: 李林涛
  * @date 2022/10/15 19:54
@@ -76,4 +77,13 @@ public class AdminStudentServiceImpl implements AdminStudentService {
         accountMapper.updateById(account);
         return "成功删除学生信息";
     }
+    public  String changeStudent(Integer id,String newUserName,String newPassword){
+        Account account = accountMapper.selectById(id);
+
+        account.setUsername(newUserName);
+        account.setPassword(newPassword);
+        accountMapper.updateById(account);
+        return "成功修改学生信息";
+    }
+
 }
