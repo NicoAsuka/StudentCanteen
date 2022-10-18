@@ -18,5 +18,7 @@ public interface AdminDishService {
 
 
     Map<String, Object> createDish(String name, Integer restaurantId, String description, Double price);
+
+    String deleteDish(Integer id);
 }
 

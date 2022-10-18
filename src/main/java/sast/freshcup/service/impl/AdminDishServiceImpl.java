@@ -25,9 +25,8 @@ import static sast.freshcup.interceptor.AccountInterceptor.accountHolder;
 /**
  * Created with IntelliJ IDEA.
  *
- * @Author: Acow337
- * @Date: 2022/01/20/20:12
- * @Description:
+ * @Author: 孙帅
+ * @Date: 2022/10/17/17:00
  */
 
 @Service
@@ -61,9 +60,13 @@ public class AdminDishServiceImpl implements AdminDishService {
     @Override
     public Map<String, Object> createDish(String name, Integer restaurantId, String description, Double price) {
 
+        System.out.println(name);
+        System.out.println(restaurantId);
+        System.out.println(description);
+        System.out.println(price);
         //传参判空
-        if (name == null){
-            throw new LocalRunTimeException(ErrorEnum.NO_DISHESID);
+        if (name == null||restaurantId == null||description == null||price == 0.0){
+            throw new LocalRunTimeException(ErrorEnum.PARAMS_LOSS);
         }
 
         //新建一个对象类
@@ -85,5 +88,13 @@ public class AdminDishServiceImpl implements AdminDishService {
         res.put("dishesId",name);
         res.put("totalPrice",price);
         return res;
+    }
+
+    @Override
+    public String deleteDish(Integer id) {
+        Dish dish = dishMapper.selectById(id);
+        dish.setIsDeleted(1);
+        dishMapper.updateById(dish);
+        return "成功删除菜品";
     }
 }

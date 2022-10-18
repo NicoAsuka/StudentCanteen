@@ -30,7 +30,9 @@ public enum ErrorEnum {
 
     NO_DISHESID(6002,"点餐不能为空哦"),
 
+
     DISHESID_ERROR(6003,"点餐格式错误"),
+
 
     DATE_ERROR(8001,"时间设置错误");
 
