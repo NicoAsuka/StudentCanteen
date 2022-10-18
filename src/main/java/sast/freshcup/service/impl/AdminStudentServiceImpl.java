@@ -76,4 +76,12 @@ public class AdminStudentServiceImpl implements AdminStudentService {
         accountMapper.updateById(account);
         return "成功删除学生信息";
     }
+    public  String changeStudent(Integer id,String newUserName,String newPassword){
+        Account account = accountMapper.selectById(id);
+        account.setUsername(newUserName);
+        account.setPassword(newPassword);
+        accountMapper.updateById(account);
+        return "成功修改学生信息";
+    }
+
 }
