@@ -14,7 +14,6 @@ import java.util.Map;
 /**
  * @author: 王毕鑫
  * @date 2022/10/15 19:45
- * contributor:acd12344
  */
 @RestController
 @RequestMapping("/admin/restaurant")
