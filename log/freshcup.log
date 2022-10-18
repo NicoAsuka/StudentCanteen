@@ -3383,3 +3383,34 @@ sast.freshcup.exception.LocalRunTimeException: TOKEN错误
 ===========释放响应===========
 2022-10-18 19:54:02.576  INFO 45532 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2022-10-18 19:54:02.595  INFO 45532 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-10-18 19:54:11.670  INFO 47912 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : Starting SastFreshCupApplication using Java 11.0.16.1 on LAPTOP-VF8GDU5I with PID 47912 (E:\javaProgram\StudentCanteen\target\classes started by 86198 in E:\javaProgram\StudentCanteen)
+2022-10-18 19:54:11.671  INFO 47912 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : The following profiles are active: prod
+2022-10-18 19:54:11.713  INFO 47912 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-10-18 19:54:11.714  INFO 47912 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-10-18 19:54:12.465  INFO 47912 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-10-18 19:54:12.468  INFO 47912 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-18 19:54:12.511  INFO 47912 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28 ms. Found 0 Redis repository interfaces.
+2022-10-18 19:54:13.279  INFO 47912 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2022-10-18 19:54:13.288  INFO 47912 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-10-18 19:54:13.289  INFO 47912 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-10-18 19:54:13.438  INFO 47912 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-18 19:54:13.438  INFO 47912 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1723 ms
+2022-10-18 19:54:16.302  INFO 47912 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-10-18 19:54:16.365  INFO 47912 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2022-10-18 19:54:16.384  INFO 47912 --- [restartedMain] sast.freshcup.SastFreshCupApplication    : Started SastFreshCupApplication in 5.134 seconds (JVM running for 7.079)
+2022-10-18 19:55:19.678  INFO 47912 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-18 19:55:19.680  INFO 47912 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-10-18 19:55:19.682  INFO 47912 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-10-18 19:55:22.740  INFO 47912 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-10-18 19:55:23.736  INFO 47912 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-10-18 19:55:24.466  INFO 47912 --- [http-nio-8081-exec-1] sast.freshcup.aop.OperateLogAspect       : 
+===========捕获响应===========
+操作描述：修改学生信息
+请求平台：PC
+请求地址：/admin/student/changeStudent
+请求参数：{newUserName=李渊博, newPassword=123456, id=2}
+请求返回：成功修改学生信息
+请求用户：Account(uid=1, username=admin1, password=null, balance=null, role=1, isDeleted=null)
+请求耗时：437ms
+请求UA：浏览器:Unknown null，os:Unknown null，是否移动设备:false
+===========释放响应===========
