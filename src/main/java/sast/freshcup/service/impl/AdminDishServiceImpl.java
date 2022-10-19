@@ -36,6 +36,52 @@ public class AdminDishServiceImpl implements AdminDishService {
     DishMapper dishMapper;
 
     @Override
+    public Map<String, Object> createDish(String name, Integer restaurantId, String description, Double price) {
+
+        System.out.println(name);
+        System.out.println(restaurantId);
+        System.out.println(description);
+        System.out.println(price);
+        //传参判空
+        if (name == null||restaurantId == null||description == null||price == 0.0){
+            throw new LocalRunTimeException(ErrorEnum.PARAMS_LOSS);
+        }
+
+        //新建一个对象类
+        Dish dish = new Dish();
+        //将参数传入
+        dish.setName(name);
+        dish.setIsDeleted(0);
+        dish.setPrice(price);
+        dish.setRestaurantId(restaurantId);
+        dish.setDescription(description);
+
+        //将新的订单插入数据库
+        dishMapper.insert(dish);
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("id",dish.getId());
+        res.put("dishesId",name);
+        res.put("RestaurantId",dish.getRestaurantId());
+        res.put("description",dish.getDescription());
+        res.put("Price",price);
+        return res;
+    }
+
+    @Override
+    public Map<String, Object> getOneDish(Integer id){
+        Dish dish = dishMapper.selectById(id);
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("id",dish.getId());
+        res.put("dishesId",dish.getName());
+        res.put("RestaurantId",dish.getRestaurantId());
+        res.put("description",dish.getDescription());
+        res.put("Price",dish.getPrice());
+        return res;
+    }
+
+    @Override
     public Map<String, Object> getDishList(Integer pageNum, Integer pageSize) {
             //以下是分页查询的写法
             Page<Dish> page = new Page<>(pageNum, pageSize);
@@ -104,38 +150,7 @@ public class AdminDishServiceImpl implements AdminDishService {
 
     }
 
-    @Override
-    public Map<String, Object> createDish(String name, Integer restaurantId, String description, Double price) {
 
-        System.out.println(name);
-        System.out.println(restaurantId);
-        System.out.println(description);
-        System.out.println(price);
-        //传参判空
-        if (name == null||restaurantId == null||description == null||price == 0.0){
-            throw new LocalRunTimeException(ErrorEnum.PARAMS_LOSS);
-        }
-
-        //新建一个对象类
-        Dish dish = new Dish();
-        //将参数传入
-        dish.setName(name);
-        dish.setIsDeleted(0);
-        dish.setPrice(price);
-        dish.setRestaurantId(restaurantId);
-        dish.setDescription(description);
-
-        //将新的订单插入数据库
-        dishMapper.insert(dish);
-
-        Map<String, Object> res = new HashMap<>();
-        res.put("id",dish.getId());
-        res.put("dishesId",name);
-        res.put("RestaurantId",dish.getRestaurantId());
-        res.put("description",dish.getDescription());
-        res.put("Price",price);
-        return res;
-    }
 
     @Override
     public String deleteDish(Integer id) {
@@ -143,5 +158,10 @@ public class AdminDishServiceImpl implements AdminDishService {
         dish.setIsDeleted(1);
         dishMapper.updateById(dish);
         return "成功删除菜品";
+    }
+
+    @Override
+    public Map<String, Object> updateCountOfDish(Integer integer, Integer count) {
+        return null;
     }
 }

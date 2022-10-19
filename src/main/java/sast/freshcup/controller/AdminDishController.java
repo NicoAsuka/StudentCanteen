@@ -14,7 +14,7 @@ import java.util.Map;
  * @create: 2022-10-15 17:22
  **/
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/dish")
 @AuthHandle(AuthEnum.ADMIN)
 public class AdminDishController {
     @Autowired
@@ -42,12 +42,24 @@ public class AdminDishController {
         return adminDishService.deleteDish(id);
     }
 
+    @OperateLog(operDesc = "管理端获取某一菜品")
+    @GetMapping("/getOneDish")
+    public Map<String, Object> getOneDish(Integer id){
+        return adminDishService.getOneDish(id);
+    }
+
     @OperateLog(operDesc = "管理端获取菜品列表")
     @GetMapping("/getDishList")
     public Map<String, Object> getDishList(
             @RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
             @RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize) {
         return adminDishService.getDishList(pageNum, pageSize);
+    }
+
+    @OperateLog(operDesc = "管理端修改菜品数量")
+    @PostMapping("/updateCountOfDish")
+    public Map<String, Object> updateCountOfDish(Integer id, Integer count) {
+        return adminDishService.updateCountOfDish(id,count);
     }
 
 }
