@@ -32,14 +32,22 @@ public class AdminRestaurantController {
     @OperateLog(operDesc = "管理端创建商铺")
     @PostMapping("/createRestaurant")
     public Map<String, Object> createDish(@RequestParam String name,
-                                          @RequestParam Integer restaurantId,
+                                          @RequestParam Integer id,
                                           @RequestParam String description,
                                           @RequestParam String location) {
-        return adminRestaurantService.createRestaurant( name, restaurantId,description,location);
+        return adminRestaurantService.createRestaurant( name, id,description,location);
     }
 
-
-
+    @OperateLog(operDesc = "管理端删除商铺")
+    @PostMapping("/deleteRestaurant")
+    public String deleteRestaurant(Integer id) {
+        return adminRestaurantService.deleteRestaurant(id);
+    }
+    @OperateLog(operDesc = "管理端修改商铺")
+    @PostMapping("/updateRestaurant")
+    public Map<String, Object> updateRestaurant(Integer id,String name, Integer restaurantId, String description, String location) {
+        return adminRestaurantService.updateRestaurant(name,restaurantId,description,location);
+    }
 
 }
 
