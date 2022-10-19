@@ -14,8 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static sast.freshcup.interceptor.AccountInterceptor.accountHolder;
-
 /**
  * @author: 王毕鑫
  * @date 2022/10/15 19:50
@@ -70,11 +68,67 @@ public class AdminRestaurantServiceImpl implements AdminRestaurantService {
         restaurantMapper.insert(restaurant);
 
         Map<String, Object> res = new HashMap<>();
-        res.put("restaurantid",restaurant.getRestaurantId());
+        res.put("restaurantid",restaurant.getId());
         res.put("restaurantname",restaurant.getName());
         res.put("restaurant-description",restaurant.getDescription());
         res.put("restaurant-location",restaurant.getLocation());
         return res;
+    }
+
+    @Override
+    public String deleteRestaurant(Integer restaurantId) {
+        Restaurant restaurant = restaurantMapper.selectById(restaurantId);
+        restaurant.setIsDeleted(1);
+        restaurantMapper.updateById(restaurant);
+        return "成功删除商品";
+    }
+    @Override
+    public Map<String, Object> updateRestaurant(String name, Integer restaurantId, String description, String location){
+        //通过id调出需修改的restaurant对象
+        Restaurant restaurant = restaurantMapper.selectById(restaurantId);
+
+
+
+
+        if (restaurant.getIsDeleted() == 1){
+            Map<String, Object> res = new HashMap<>();
+            res.put("dishesId",restaurant.getName());
+            res.put("RestaurantId",restaurant.getId());
+            res.put("description",restaurant.getDescription());
+            res.put("Price",restaurant.getLocation());
+            return res;
+        }
+        //传参判空，不能全部参数都空
+        if (name == null && restaurantId == null && description == null && location == null){
+            throw new LocalRunTimeException(ErrorEnum.PARAMS_LOSS);
+        }
+
+        if(name != null){
+            restaurant.setName(name);
+        }
+
+        if (location != null){
+            restaurant.setLocation(location);
+        }
+
+        if (restaurantId != null){
+            restaurant.setId(restaurantId);
+        }
+
+        if (description != null){
+            restaurant.setDescription(description);
+        }
+        restaurant.setIsDeleted(0);
+
+        restaurantMapper.updateById(restaurant);
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("restaurant",restaurant.getName());
+        res.put("RestaurantId",restaurant.getId());
+        res.put("description",restaurant.getDescription());
+        res.put("Location",restaurant.getLocation());
+        return res;
+
     }
 
 

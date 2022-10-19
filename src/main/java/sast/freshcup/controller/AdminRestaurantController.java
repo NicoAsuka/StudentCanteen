@@ -38,8 +38,16 @@ public class AdminRestaurantController {
         return adminRestaurantService.createRestaurant( name, restaurantId,description,location);
     }
 
-
-
+    @OperateLog(operDesc = "管理端删除商铺")
+    @PostMapping("/deleteRestaurant")
+    public String deleteRestaurant(Integer id) {
+        return adminRestaurantService.deleteRestaurant(id);
+    }
+    @OperateLog(operDesc = "管理端修改商铺")
+    @PostMapping("/updateRestaurant")
+    public Map<String, Object> updateRestaurant(Integer id,String name, Integer restaurantId, String description, String location) {
+        return adminRestaurantService.updateRestaurant(name,restaurantId,description,location);
+    }
 
 }
 

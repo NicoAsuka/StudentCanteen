@@ -10,4 +10,8 @@ public interface AdminRestaurantService {
     Map<String, Object> getRestaurantList(Integer pageNum, Integer pageSize);
 
     Map<String, Object> createRestaurant(String name, Integer restaurantId, String description, String location);
+
+    String deleteRestaurant(Integer id);
+
+    Map<String, Object> updateRestaurant(String name, Integer restaurantId, String description, String location);
 }
