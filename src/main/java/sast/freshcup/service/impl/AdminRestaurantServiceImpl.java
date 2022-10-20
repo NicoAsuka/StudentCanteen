@@ -4,8 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sast.freshcup.common.enums.ErrorEnum;
 import sast.freshcup.entity.Restaurant;
-import sast.freshcup.mapper.DishMapper;
+import sast.freshcup.exception.LocalRunTimeException;
 import sast.freshcup.mapper.RestaurantMapper;
 import sast.freshcup.service.AdminRestaurantService;
 
@@ -42,4 +43,97 @@ public class AdminRestaurantServiceImpl implements AdminRestaurantService {
         res.put("records", records);
         return res;
     }
+
+    @Override
+    public Map<String, Object> createRestaurant(String name, Integer restaurantId, String description, String location) {
+
+        System.out.println(name);
+        System.out.println(restaurantId);
+        System.out.println(description);
+        System.out.println(location);
+        //传参判空
+        if (name == null||restaurantId == null||description == null||location == null){
+            throw new LocalRunTimeException(ErrorEnum.PARAMS_LOSS);
+        }
+
+        //新建一个对象类
+        Restaurant restaurant = new Restaurant();
+        //将参数传入
+        restaurant.setName(name);
+        restaurant.setIsDeleted(0);
+        restaurant.setLocation(location);
+        restaurant.setDescription(description);
+
+        //将新的商铺插入数据库
+        restaurantMapper.insert(restaurant);
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("restaurantid",restaurant.getId());
+        res.put("restaurantname",restaurant.getName());
+        res.put("restaurant-description",restaurant.getDescription());
+        res.put("restaurant-location",restaurant.getLocation());
+        return res;
+    }
+
+    @Override
+    public String deleteRestaurant(Integer restaurantId) {
+        Restaurant restaurant = restaurantMapper.selectById(restaurantId);
+        restaurant.setIsDeleted(1);
+        restaurantMapper.updateById(restaurant);
+        return "成功删除商品";
+    }
+    @Override
+    public Map<String, Object> updateRestaurant(String name, Integer restaurantId, String description, String location){
+        //通过id调出需修改的restaurant对象
+        Restaurant restaurant = restaurantMapper.selectById(restaurantId);
+
+
+
+
+        if (restaurant.getIsDeleted() == 1){
+            Map<String, Object> res = new HashMap<>();
+            res.put("dishesId",restaurant.getName());
+            res.put("RestaurantId",restaurant.getId());
+            res.put("description",restaurant.getDescription());
+            res.put("Price",restaurant.getLocation());
+            return res;
+        }
+        //传参判空，不能全部参数都空
+        if (name == null && restaurantId == null && description == null && location == null){
+            throw new LocalRunTimeException(ErrorEnum.PARAMS_LOSS);
+        }
+
+        if(name != null){
+            restaurant.setName(name);
+        }
+
+        if (location != null){
+            restaurant.setLocation(location);
+        }
+
+        if (restaurantId != null){
+            restaurant.setId(restaurantId);
+        }
+
+        if (description != null){
+            restaurant.setDescription(description);
+        }
+        restaurant.setIsDeleted(0);
+
+        restaurantMapper.updateById(restaurant);
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("restaurant",restaurant.getName());
+        res.put("RestaurantId",restaurant.getId());
+        res.put("description",restaurant.getDescription());
+        res.put("Location",restaurant.getLocation());
+        return res;
+
+    }
+
+
+
+
+
+
 }

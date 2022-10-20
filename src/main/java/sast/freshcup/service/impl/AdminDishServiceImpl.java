@@ -36,28 +36,6 @@ public class AdminDishServiceImpl implements AdminDishService {
     DishMapper dishMapper;
 
     @Override
-    public Map<String, Object> getDishList(Integer pageNum, Integer pageSize) {
-            //以下是分页查询的写法
-            Page<Dish> page = new Page<>(pageNum, pageSize);
-            //找到存在的restaurant信息，并通过id升序排列展示
-            dishMapper.selectPage(page,new QueryWrapper<Dish>()
-                    .eq("is_deleted",0)
-                    .orderByAsc("id"));
-
-            //封装返回
-            List<Dish> records = page.getRecords();
-            long total = page.getTotal();
-            Map<String, Object> res = new HashMap<>();
-            res.put("total", total);
-            res.put("pageNum", pageNum);
-            res.put("pageSize", pageSize);
-            res.put("records", records);
-            return res;
-    }
-
-
-
-    @Override
     public Map<String, Object> createDish(String name, Integer restaurantId, String description, Double price) {
 
         System.out.println(name);
@@ -82,13 +60,97 @@ public class AdminDishServiceImpl implements AdminDishService {
         dishMapper.insert(dish);
 
         Map<String, Object> res = new HashMap<>();
-        res.put("uid",accountHolder.get().getUid());
-        res.put("username",accountHolder.get().getUsername());
-        //TODO 能根据id一起返回菜品名称和价格吗？
+        res.put("id",dish.getId());
         res.put("dishesId",name);
-        res.put("totalPrice",price);
+        res.put("RestaurantId",dish.getRestaurantId());
+        res.put("description",dish.getDescription());
+        res.put("Price",price);
         return res;
     }
+
+    @Override
+    public Map<String, Object> getOneDish(Integer id){
+        Dish dish = dishMapper.selectById(id);
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("id",dish.getId());
+        res.put("dishesId",dish.getName());
+        res.put("RestaurantId",dish.getRestaurantId());
+        res.put("description",dish.getDescription());
+        res.put("Price",dish.getPrice());
+        return res;
+    }
+
+    @Override
+    public Map<String, Object> getDishList(Integer pageNum, Integer pageSize) {
+            //以下是分页查询的写法
+            Page<Dish> page = new Page<>(pageNum, pageSize);
+            //找到存在的restaurant信息，并通过id升序排列展示
+            dishMapper.selectPage(page,new QueryWrapper<Dish>()
+                    .eq("is_deleted",0)
+                    .orderByAsc("id"));
+
+            //封装返回
+            List<Dish> records = page.getRecords();
+            long total = page.getTotal();
+            Map<String, Object> res = new HashMap<>();
+            res.put("total", total);
+            res.put("pageNum", pageNum);
+            res.put("pageSize", pageSize);
+            res.put("records", records);
+            return res;
+    }
+
+    @Override
+    public Map<String, Object> updateDish(Integer id,String name, Integer restaurantId, String description, Double price){
+        //通过id调出需修改的dish对象
+        Dish dish = dishMapper.selectById(id);
+
+
+        if (dish.getIsDeleted() == 1){
+            Map<String, Object> res = new HashMap<>();
+            res.put("id",dish.getId());
+            res.put("dishesId",dish.getName());
+            res.put("RestaurantId",dish.getRestaurantId());
+            res.put("description",dish.getDescription());
+            res.put("Price",dish.getPrice());
+            return res;
+        }
+        //传参判空，不能全部参数都空
+        if (name == null && restaurantId == null && description == null && price == 0.0){
+            throw new LocalRunTimeException(ErrorEnum.PARAMS_LOSS);
+        }
+
+        if(name != null){
+            dish.setName(name);
+        }
+
+        if (price != null){
+            dish.setPrice(price);
+        }
+
+        if (restaurantId != null){
+            dish.setRestaurantId(restaurantId);
+        }
+
+        if (description != null){
+            dish.setDescription(description);
+        }
+        dish.setIsDeleted(0);
+
+        dishMapper.updateById(dish);
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("id",dish.getId());
+        res.put("dishesId",dish.getName());
+        res.put("RestaurantId",dish.getRestaurantId());
+        res.put("description",dish.getDescription());
+        res.put("Price",dish.getPrice());
+        return res;
+
+    }
+
+
 
     @Override
     public String deleteDish(Integer id) {
@@ -96,5 +158,10 @@ public class AdminDishServiceImpl implements AdminDishService {
         dish.setIsDeleted(1);
         dishMapper.updateById(dish);
         return "成功删除菜品";
+    }
+
+    @Override
+    public Map<String, Object> updateCountOfDish(Integer integer, Integer count) {
+        return null;
     }
 }

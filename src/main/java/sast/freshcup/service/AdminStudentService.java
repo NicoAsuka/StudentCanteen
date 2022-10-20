@@ -11,6 +11,6 @@ public interface AdminStudentService {
 
     Map<String,Object> getStudent(Integer uid);
     String deleteStudent(Integer id);
-
+    String changeStudent(Integer id,String newUserName,String newPassword);
 
 }

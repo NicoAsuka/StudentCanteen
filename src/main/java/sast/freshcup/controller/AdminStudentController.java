@@ -40,4 +40,9 @@ public class AdminStudentController {
     public String deleteStudent(Integer id) {
         return adminStudentService.deleteStudent(id);
     }
+    @OperateLog(operDesc = "修改学生信息")
+    @PostMapping("/changeStudent")
+    public String changeStudent(Integer id,String newUserName,String newPassword) {
+        return adminStudentService.changeStudent(id,newUserName,newPassword);
+    }
 }

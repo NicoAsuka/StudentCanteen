@@ -14,7 +14,7 @@ import java.util.Map;
  * @create: 2022-10-15 17:22
  **/
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/dish")
 @AuthHandle(AuthEnum.ADMIN)
 public class AdminDishController {
     @Autowired
@@ -29,14 +29,11 @@ public class AdminDishController {
         return adminDishService.createDish(name,restaurantId, description, price);
     }
 
-//    @OperateLog(operDesc = "管理端修改菜品")
-//    @PostMapping("/reviseDish")
-//    public Map<String, Object> reviseDish(@RequestParam String name,
-//                                          @RequestParam Integer restaurantId,
-//                                          @RequestParam String description,
-//                                          @RequestParam Double price) {
-//        return adminDishService.reviseDish(name,restaurantId, description, price);
-//    }
+    @OperateLog(operDesc = "管理端修改菜品")
+    @PostMapping("/updateDish")
+    public Map<String, Object> updateDish(Integer id,String name, Integer restaurantId, String description, Double price) {
+        return adminDishService.updateDish(id,name,restaurantId,description,price);
+    }
 
 
     @OperateLog(operDesc = "管理端删除菜品")
@@ -45,12 +42,24 @@ public class AdminDishController {
         return adminDishService.deleteDish(id);
     }
 
+    @OperateLog(operDesc = "管理端获取某一菜品")
+    @GetMapping("/getOneDish")
+    public Map<String, Object> getOneDish(Integer id){
+        return adminDishService.getOneDish(id);
+    }
+
     @OperateLog(operDesc = "管理端获取菜品列表")
     @GetMapping("/getDishList")
     public Map<String, Object> getDishList(
             @RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
             @RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize) {
         return adminDishService.getDishList(pageNum, pageSize);
+    }
+
+    @OperateLog(operDesc = "管理端修改菜品数量")
+    @PostMapping("/updateCountOfDish")
+    public Map<String, Object> updateCountOfDish(Integer id, Integer count) {
+        return adminDishService.updateCountOfDish(id,count);
     }
 
 }
