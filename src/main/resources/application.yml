@@ -6,6 +6,7 @@ spring:
   thymeleaf:
     cache: false
 
+
 jwt:
   secret: 19ADSKJDGKJ12983JKDFHAKAS  #JWT密钥
   expiration: 864000000              #JWT过期时间（1000天）

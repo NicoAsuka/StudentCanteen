@@ -91,10 +91,16 @@ public class LoginController {
         queryWrapper.eq("username", username);
         Account accountFromDB = accountMapper.selectOne(queryWrapper);
         if (accountFromDB == null) {
-            throw new LocalRunTimeException("账号不存在");
+            return "login";
         } else if (!password.equals(accountFromDB.getPassword())) {
-            throw new LocalRunTimeException("密码错误");
+            return "login";
         }
+
+        redisService.set("username",accountFromDB.getUsername());
+        redisService.set("uid",accountFromDB.getUid());
+
+        model.addAttribute("uid",accountFromDB.getUid());
+        model.addAttribute("role",accountFromDB.getRole());
         String token = jwtUtil.generateToken(accountFromDB);
         Map<String, String> map = new HashMap<>();
         map.put("role", accountFromDB.getRole().toString());

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.ui.Model;
 import sast.freshcup.common.enums.ErrorEnum;
 import sast.freshcup.entity.Account;
 import sast.freshcup.entity.Dish;
@@ -15,6 +16,7 @@ import sast.freshcup.mapper.AccountMapper;
 import sast.freshcup.mapper.DishMapper;
 import sast.freshcup.mapper.DishOrderMapper;
 import sast.freshcup.mapper.RestaurantMapper;
+import sast.freshcup.service.RedisService;
 import sast.freshcup.service.StudentService;
 
 
@@ -44,34 +46,25 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     DishOrderMapper orderMapper;
 
+    @Autowired
+    RedisService redisService;
+
 
 
     @Override
-    public Map<String, Object> getBalance() {
+    public Account getBalance(Model model) {
         //一般来说先做判空校验，若要求不为空的传参为空，则返回error
         //这里没有传参所以先不演示，后面的接口再进行演示
 
-        //通过token获取基本的用户信息如uid，username
-        Integer uid = accountHolder.get().getUid();
-        String username = accountHolder.get().getUsername();
-
         //通过uid获取对应的账户对象
         QueryWrapper<Account> eq = new QueryWrapper<Account>()
-                .eq("uid", uid)
+                .eq("uid", redisService.get("uid"))
                 .eq("is_deleted", 0);
         Account account = accountMapper.selectOne(eq);
         if (account == null){
             throw new LocalRunTimeException(ErrorEnum.NO_USER);
         }
-        //通过对象得到该对象的账户余额
-        Double balance = account.getBalance();
-
-        //封装数据，返回
-        Map<String, Object> returnBalance = new HashMap<>();
-        returnBalance.put("uid",uid);
-        returnBalance.put("username",username);
-        returnBalance.put("balance",balance);
-        return returnBalance;
+        return account;
     }
 
     @Override

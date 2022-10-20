@@ -1,7 +1,10 @@
 package sast.freshcup.service;
 
+import org.springframework.ui.Model;
+import sast.freshcup.entity.Account;
 import sast.freshcup.entity.Dish;
 
+import java.nio.channels.AcceptPendingException;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +14,7 @@ import java.util.Map;
  **/
 public interface StudentService {
 
-    Map<String, Object> getBalance();
+    Account getBalance(Model model);
 
     Map<String, Object> addBalance(Integer money);
 

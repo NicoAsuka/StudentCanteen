@@ -43,6 +43,14 @@ public class Account implements Serializable {
     @ExcelProperty("密码")
     private String password;
 
+    @NotNull(message = "真实姓名不能为 null")
+    @ExcelProperty("真实姓名")
+    private String realName;
+
+    @NotNull(message = "学号不能为 null")
+    @ExcelProperty("学号")
+    private String schoolId;
+
     @NotNull(message = "账户余额不能为 null")
     private Double balance;
 
