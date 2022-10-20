@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sast.freshcup.common.constants.RedisKeyConst;
 import sast.freshcup.entity.Account;
@@ -27,7 +29,7 @@ import java.util.concurrent.TimeUnit;
  * @create: 2022-10-16 20:33
  **/
 @Slf4j
-@RestController
+@Controller
 public class LoginController {
     public static final String LOGIN_VALIDATE_CODE = "VAL_CODE:";
 
@@ -70,27 +72,27 @@ public class LoginController {
         redisService.set(LOGIN_VALIDATE_CODE + uuid, capText, 60 * 5);
     }
 
-    @PostMapping("/login")
-    public Map<String, String> login(@RequestBody Account account,
-                                     @RequestHeader("User-Agent") String agent,
-                                     @RequestParam("validateCode") String validateCode,
-                                     @RequestHeader("CAPTCHA") String uuid) {
+    @PostMapping("/loginController")
+    public String login(String username,
+                        String password,
+                        String validateCode,
+                        Model model) {
         //验证验证码
-        String currentCode = (String) redisService.get(LOGIN_VALIDATE_CODE + uuid);
-        if (currentCode == null) {
-            throw new LocalRunTimeException("验证码失效");
-        } else if (!currentCode.equals(validateCode)) {
-            throw new LocalRunTimeException("验证码错误");
-        }
-        redisService.del(LOGIN_VALIDATE_CODE + uuid);
+//        String currentCode = (String) redisService.get(LOGIN_VALIDATE_CODE + uuid);
+//        if (currentCode == null) {
+//            throw new LocalRunTimeException("验证码失效");
+//        } else if (!currentCode.equals(validateCode)) {
+//            throw new LocalRunTimeException("验证码错误");
+//        }
+//        redisService.del(LOGIN_VALIDATE_CODE + uuid);
 
         //登录处理
         QueryWrapper<Account> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("username", account.getUsername());
+        queryWrapper.eq("username", username);
         Account accountFromDB = accountMapper.selectOne(queryWrapper);
         if (accountFromDB == null) {
             throw new LocalRunTimeException("账号不存在");
-        } else if (!account.getPassword().equals(accountFromDB.getPassword())) {
+        } else if (!password.equals(accountFromDB.getPassword())) {
             throw new LocalRunTimeException("密码错误");
         }
         String token = jwtUtil.generateToken(accountFromDB);
@@ -100,12 +102,12 @@ public class LoginController {
 
         log.info("===============================================");
         log.info("用户登录：{}，role：{}", accountFromDB.getUsername(), accountFromDB.getRole());
-        log.info("登录Agent:{}", agent);
+//        log.info("登录Agent:{}", agent);
         log.info("===============================================");
 
         //用redis中的过期时间代替JWT的过期时间，每次经过拦截器时更新过期时间
         //先设置为30天
-        redisService.set(RedisKeyConst.getTokenKey(account), token, 30, TimeUnit.DAYS);
-        return map;
+//        redisService.set(RedisKeyConst.getTokenKey(account), token, 30, TimeUnit.DAYS);
+        return "redirect:/index";
     }
 }

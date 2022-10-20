@@ -1,21 +1,25 @@
 package sast.freshcup.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sast.freshcup.annotation.AuthHandle;
 import sast.freshcup.annotation.OperateLog;
 import sast.freshcup.common.enums.AuthEnum;
+import sast.freshcup.entity.Dish;
 import sast.freshcup.service.StudentService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
  * @author: 李林涛
  * @create: 2022-10-15 17:22
  **/
-@AuthHandle(AuthEnum.STUDENT)
+//@AuthHandle(AuthEnum.STUDENT)
 @RequestMapping("/student")
-@RestController
+@Controller
 public class StudentController {
 
     @Autowired
@@ -43,10 +47,13 @@ public class StudentController {
 
     @OperateLog(operDesc = "学生端获取菜品列表")
     @GetMapping("/getDishList")
-    public Map<String, Object> getDishList(
+    public String getDishList(
             @RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
-            @RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize) {
-        return studentService.getDishList(pageNum, pageSize);
+            @RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize,
+            Model model) {
+        List<Dish> dishesList = studentService.getDishList(pageNum, pageSize);
+        model.addAttribute("dishesList",dishesList);
+        return "dishList";
     }
 
     @OperateLog(operDesc = "学生端创建订单")

@@ -3,6 +3,8 @@ spring:
     name: StudentCanteen
   profiles:
     active: '@build.profile.id@'
+  thymeleaf:
+    cache: false
 
 jwt:
   secret: 19ADSKJDGKJ12983JKDFHAKAS  #JWT密钥

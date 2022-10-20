@@ -129,11 +129,11 @@ public class StudentServiceImpl implements StudentService {
 
     //注意看，这个接口的写法和上面的接口几乎一模一样，我只是把restaurant换成了dish
     @Override
-    public Map<String, Object> getDishList(Integer pageNum, Integer pageSize) {
+    public List<Dish> getDishList(Integer pageNum, Integer pageSize) {
         //这里不需要校验参数为空是因为我们在controller中设置了默认值
 
         //以下是分页查询的写法
-        Page<Dish> page = new Page<>(pageNum, pageSize);
+        Page<Dish> page = new Page<>(1,20);
         //找到存在的restaurant信息，并通过id升序排列展示
         dishMapper.selectPage(page,new QueryWrapper<Dish>()
                 .eq("is_deleted",0)
@@ -141,13 +141,7 @@ public class StudentServiceImpl implements StudentService {
 
         //封装返回
         List<Dish> records = page.getRecords();
-        long total = page.getTotal();
-        Map<String, Object> res = new HashMap<>();
-        res.put("total", total);
-        res.put("pageNum", pageNum);
-        res.put("pageSize", pageSize);
-        res.put("records", records);
-        return res;
+        return records;
     }
 
     @Override
