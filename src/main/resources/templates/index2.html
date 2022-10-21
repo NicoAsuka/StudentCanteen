@@ -28,11 +28,28 @@
         <nav class="sidebar-main">
           <ul class="nav nav-drawer">
             <li class="nav-item"><a th:href="@{/index}"><i class="mdi mdi-home"></i> 首页</a></li>
+
             <li class="nav-item nav-item-has-subnav">
-              <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 我的订单</a>
+              <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 管理菜单</a>
               <ul class="nav nav-subnav">
-                <li><a th:href="@{/student/getDishList}"> 开始点餐</a></li>
-                <li><a th:href="@{/student/getDishOrderList}"> 我的订单</a></li>
+                <li><a th:href="@{/student/getDishList}"> 菜单列表</a></li>
+                <li><a th:href="@{/student/getDishOrderList}"> 创建菜单</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item nav-item-has-subnav">
+              <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 管理学生</a>
+              <ul class="nav nav-subnav">
+                <li><a th:href="@{/index2}"> 学生列表</a></li>
+                <li><a th:href="@{/index2}"> 注册学生账号</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item nav-item-has-subnav">
+              <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 管理商铺</a>
+              <ul class="nav nav-subnav">
+                <li><a th:href="@{/index2}"> 商铺列表</a></li>
+                <li><a th:href="@{/index2}"> 创建商铺</a></li>
               </ul>
             </li>
 

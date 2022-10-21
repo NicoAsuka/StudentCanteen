@@ -16,6 +16,7 @@ import sast.freshcup.mapper.AccountMapper;
 import sast.freshcup.mapper.DishMapper;
 import sast.freshcup.mapper.DishOrderMapper;
 import sast.freshcup.mapper.RestaurantMapper;
+import sast.freshcup.pojo.DishOrderView;
 import sast.freshcup.service.RedisService;
 import sast.freshcup.service.StudentService;
 
@@ -138,7 +139,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Map<String, Object> createOrder(String dishesId) {
+    public void createOrder(Integer[] dishesId) {
+        System.out.println(dishesId);
         //传参判空
         if (dishesId == null){
             throw new LocalRunTimeException(ErrorEnum.NO_DISHESID);
@@ -147,47 +149,37 @@ public class StudentServiceImpl implements StudentService {
         //初始化一个totalPrice用于记录订单总金额
         Double totalPrice = 0.0;
 
-
-        //解析dishesId字符串，遍历查询dish，计算totalPrice
-        String[] dishesIdArray = dishesId.split(",");
-        for (String dishId : dishesIdArray) {
-            boolean matches = Pattern.compile("[1-9]").matcher(dishId).matches();
-            //校验dishesId输入是否正确
-            if (!matches) {
-                throw new LocalRunTimeException(ErrorEnum.DISHESID_ERROR);
+        int i = 0;
+        String dishesIdString = new String();
+        for (Integer dishId : dishesId){
+            Dish dish = dishMapper.selectById(dishId);
+            Double price = dish.getPrice();
+            totalPrice += price;
+            if (i == 0){
+                dishesIdString += Integer.toString(dishId);
+            }else{
+                dishesIdString += ","+dishId;
             }
-
-            Integer integer = Integer.valueOf(dishId);
-            Dish dish = dishMapper.selectById(integer);
-            totalPrice += dish.getPrice();
+            i++;
         }
 
         //新建一个对象类
         DishOrder dishOrder = new DishOrder();
         //将参数传入
-        dishOrder.setDishesId(dishesId);
-        dishOrder.setUid(accountHolder.get().getUid());
+        dishOrder.setDishesId(dishesIdString);
+        dishOrder.setUid((Integer) redisService.get("uid"));
         dishOrder.setIsDeleted(0);
         dishOrder.setTotalPrice(totalPrice);
 
         //将新的订单插入数据库
         orderMapper.insert(dishOrder);
-
-        Map<String, Object> res = new HashMap<>();
-        res.put("uid",accountHolder.get().getUid());
-        res.put("username",accountHolder.get().getUsername());
-        //TODO 能根据id一起返回菜品名称和价格吗？
-        res.put("dishesId",dishesId);
-        res.put("totalPrice",totalPrice);
-        return res;
     }
 
     @Override
-    public String deleteOrder(Integer id) {
+    public void deleteOrder(Integer id) {
         DishOrder dishOrder = orderMapper.selectById(id);
         dishOrder.setIsDeleted(1);
         orderMapper.updateById(dishOrder);
-        return "成功取消订单";
     }
 
     @Override
@@ -195,5 +187,49 @@ public class StudentServiceImpl implements StudentService {
         return null;
     }
 
+    @Override
+    public void updatePassword(String password) {
+        Integer uid = (Integer) redisService.get("uid");
+        Account account = accountMapper.selectById(uid);
+        account.setPassword(password);
+        accountMapper.updateById(account);
+    }
 
+    @Override
+    public List<DishOrder> getDishOrderList(Integer pageNum, Integer pageSize) {
+        //这里不需要校验参数为空是因为我们在controller中设置了默认值
+
+        //以下是分页查询的写法
+        Page<DishOrder> page = new Page<>(1,20);
+        //找到存在的restaurant信息，并通过id升序排列展示
+        orderMapper.selectPage(page,new QueryWrapper<DishOrder>()
+                .eq("is_deleted",0)
+                .eq("uid",(Integer)redisService.get("uid"))
+                .orderByAsc("id"));
+
+        //Todo 考虑返回菜品的名字和价格；
+//        List<DishOrder> records1 = page.getRecords();
+//        DishOrderView dishOrderView = new DishOrderView();
+//        //遍历每一条记录
+//        for (DishOrder record : records1){
+//            String[] dishId = record.getDishesId().split(",");
+//
+//            //遍历每条订单中的所有dishesId
+//            for (String dish:dishId){
+//                Dish dish1 = dishMapper.selectById(Integer.parseInt(dish));
+//                String name = dish1.getName();
+//
+//            }
+//            dishOrderView.setDishesId(record.getDishesId());
+//            dishOrderView.setTotalPrice(record.getTotalPrice());
+//            dishOrderView.setIsDeleted(record.getIsDeleted());
+//            dishOrderView.setId(record.getId());
+//            dishOrderView.setUid(record.getUid());
+//
+//        }
+
+        //封装返回
+        List<DishOrder> records = page.getRecords();
+        return records;
+    }
 }

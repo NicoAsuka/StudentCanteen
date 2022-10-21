@@ -21,7 +21,7 @@
 
             <!-- logo -->
             <div id="logo" class="sidebar-header">
-                <a th:href="@{/index}"><img src="/images/logo-sidebar.png" title="程序设计1组——食堂管理系统" alt="程序设计1组——食堂管理系统"/></a>
+                <a href="index.html"><img src="/images/logo-sidebar.png" title="LightYear" alt="LightYear"/></a>
             </div>
             <div class="lyear-layout-sidebar-scroll">
 
@@ -238,55 +238,54 @@
                                 </form>
                             </div>
 
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <form method="post" th:action="@{/student/createOrder}" class="site-form">
-                                        <div class="toolbar-btn-action">
-                                            <button type="submit" class="btn btn-primary">提交订单</button>
-                                        </div>
-                                        <table class="table table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>
-                                                    <label class="lyear-checkbox checkbox-primary">
-                                                        <input type="checkbox" id="check-all"><span></span>
-                                                    </label>
-                                                </th>
-                                                <th>编号</th>
-                                                <th>菜品名</th>
-                                                <th>所属餐厅</th>
-                                                <th>菜品描述</th>
-                                                <th>价格</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr th:each="dish,state:${dishesList}">
-                                                <td>
-                                                    <label class="lyear-checkbox checkbox-primary">
-                                                        <input type="checkbox" th:name="dishesId" th:value="${dish.id}"><span></span>
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <span th:text="${dish.id}"></span>
-                                                </td>
-                                                <td>
-                                                    <span th:text="${dish.name}"></span>
-                                                </td>
-                                                <td>
-                                                    <span th:text="${dish.restaurantId}"></span>
-                                                </td>
-                                                <td>
-                                                    <span th:text="${dish.description}"></span>
-                                                </td>
-                                                <td>
-                                                    <span th:text="${dish.price}"></span>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </form>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+
+                                        <form method="post" th:action="@{/student/deleteOrder}" class="site-form" >
+                                            <div class="toolbar-btn-action">
+                                                <button type="submit" class="btn btn-danger">删除订单</button>
+                                            </div>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>
+                                                        <label class="lyear-checkbox checkbox-primary">
+                                                            <input type="checkbox" id="check-all"><span></span>
+                                                        </label>
+                                                    </th>
+                                                    <th>订单编号</th>
+                                                    <th>点餐人</th>
+                                                    <th>所点菜品</th>
+                                                    <th>餐品总价</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="dishOrder,state:${dishOrderList}">
+                                                    <td>
+                                                        <label class="lyear-checkbox checkbox-primary">
+                                                            <input type="checkbox" th:name="dishOrderIds"
+                                                                   th:value="${dishOrder.id}"><span></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <span th:text="${dishOrder.id}"></span>
+                                                    </td>
+                                                    <td>
+                                                        <span th:text="${dishOrder.uid}"></span>
+                                                    </td>
+                                                    <td>
+                                                        <span th:text="${dishOrder.dishesId}"></span>
+                                                    </td>
+                                                    <td>
+                                                        <span th:text="${dishOrder.totalPrice}"></span>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </form>
+
+                                    </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
 

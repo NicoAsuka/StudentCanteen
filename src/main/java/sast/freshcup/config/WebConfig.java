@@ -2,7 +2,6 @@ package sast.freshcup.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import sast.freshcup.interceptor.AccountInterceptor;
@@ -36,8 +35,9 @@ public class WebConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("login").setViewName("login");
         registry.addViewController("index").setViewName("index");
-        registry.addViewController("addOrder").setViewName("addOrder");
+        registry.addViewController("index2").setViewName("index2");
         registry.addViewController("dishList").setViewName("dishList");
         registry.addViewController("homePage").setViewName("homePage");
+        registry.addViewController("updatePassword").setViewName("updatePassword");
     }
 }

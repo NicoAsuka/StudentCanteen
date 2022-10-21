@@ -3,6 +3,7 @@ package sast.freshcup.service;
 import org.springframework.ui.Model;
 import sast.freshcup.entity.Account;
 import sast.freshcup.entity.Dish;
+import sast.freshcup.entity.DishOrder;
 
 import java.nio.channels.AcceptPendingException;
 import java.util.List;
@@ -22,9 +23,13 @@ public interface StudentService {
 
     List<Dish> getDishList(Integer pageNum, Integer pageSize);
 
-    Map<String, Object> createOrder(String dishesId);
+    void createOrder(Integer[] dishesId);
 
-    String deleteOrder(Integer id);
+    void deleteOrder(Integer id);
 
     Map<String, Object> updateOrderList(Integer id, String dishesId);
+
+    void updatePassword(String password);
+
+    List<DishOrder> getDishOrderList(Integer pageNum, Integer pageSize);
 }
