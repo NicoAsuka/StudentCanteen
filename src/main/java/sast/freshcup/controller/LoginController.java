@@ -99,6 +99,7 @@ public class LoginController {
         redisService.set("username",accountFromDB.getUsername());
         redisService.set("uid",accountFromDB.getUid());
         redisService.set("role",accountFromDB.getRole());
+        redisService.set("password",accountFromDB.getPassword());
 
 //        model.addAttribute("uid",accountFromDB.getUid());
 //        model.addAttribute("role",accountFromDB.getRole());

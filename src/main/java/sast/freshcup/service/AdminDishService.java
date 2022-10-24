@@ -1,7 +1,9 @@
 package sast.freshcup.service;
 
 import org.springframework.beans.factory.parsing.Problem;
+import sast.freshcup.entity.Dish;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,11 +16,11 @@ import java.util.Map;
 
 public interface AdminDishService {
 
-    Map<String, Object> getDishList(Integer pageNum, Integer pageSize);
+    List<Dish> getDishList(Integer pageNum, Integer pageSize);
 
     Map<String, Object> getOneDish(Integer id);
 
-    Map<String, Object> createDish(String name, Integer restaurantId, String description, Double price);
+    void createDish(String name, Integer restaurantId, String description, Double price);
 
     Map<String, Object> updateDish(Integer integer, String name, Integer id, String description, Double price);
 

@@ -1,5 +1,11 @@
 package sast.freshcup.service;
 
+import org.springframework.web.multipart.MultipartFile;
+import sast.freshcup.entity.Account;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -7,10 +13,13 @@ import java.util.Map;
  * @date 2022/10/15 19:48
  */
 public interface AdminStudentService {
-    Map<String,Object> getStudentList(Integer pageNum, Integer pageSize);
+    List<Account> getStudentList(Integer pageNum, Integer pageSize);
 
-    Map<String,Object> getStudent(Integer uid);
+    Account getStudent(Integer uid);
     String deleteStudent(Integer id);
-    String changeStudent(Integer id,String newUserName,String newPassword);
+    String updateStudent(Integer uid,String userName,String password,String realName,String schoolId);
+
+    String importStudent(MultipartFile studentFile, HttpServletResponse response) throws IOException;
+
 
 }

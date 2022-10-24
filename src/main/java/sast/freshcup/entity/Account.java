@@ -52,9 +52,11 @@ public class Account implements Serializable {
     private String schoolId;
 
     @NotNull(message = "账户余额不能为 null")
+    @ExcelIgnore
     private Double balance;
 
     @NotNull(message = "is_deleted")
+    @ExcelIgnore
     private Integer isDeleted;
 
     /**

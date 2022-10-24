@@ -21,7 +21,7 @@
 
       <!-- logo -->
       <div id="logo" class="sidebar-header">
-        <a th:href="@{/index}"><img src="/images/mylogo.png" title="程序设计1组——食堂管理系统" alt="程序设计1组——食堂管理系统"/></a>
+        <a href="index2.html"><img src="/images/mylogo2.png"  title="LightYear" alt="程序设计1组"/></a>
       </div>
       <div class="lyear-layout-sidebar-scroll">
 
@@ -32,24 +32,16 @@
             <li class="nav-item nav-item-has-subnav">
               <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 管理菜单</a>
               <ul class="nav nav-subnav">
-                <li><a th:href="@{/student/getDishList}"> 菜单列表</a></li>
-                <li><a th:href="@{/student/getDishOrderList}"> 创建菜单</a></li>
+                <li><a th:href="@{/admin/dish/getDishList}"> 菜单列表</a></li>
+                <li><a th:href="@{/createDish2}"> 创建菜单</a></li>
               </ul>
             </li>
 
             <li class="nav-item nav-item-has-subnav">
               <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 管理学生</a>
               <ul class="nav nav-subnav">
-                <li><a th:href="@{/index2}"> 学生列表</a></li>
-                <li><a th:href="@{/index2}"> 注册学生账号</a></li>
-              </ul>
-            </li>
-
-            <li class="nav-item nav-item-has-subnav">
-              <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 管理商铺</a>
-              <ul class="nav nav-subnav">
-                <li><a th:href="@{/index2}"> 商铺列表</a></li>
-                <li><a th:href="@{/index2}"> 创建商铺</a></li>
+                <li><a th:href="@{/admin/student/getStudentList}"> 学生列表</a></li>
+                <li><a th:href="@{/import2}"> 注册学生账号</a></li>
               </ul>
             </li>
 
@@ -85,6 +77,7 @@
               <ul class="dropdown-menu dropdown-menu-right">
                 <li><a href="/student/getBalance"><i class="mdi mdi-account"></i> 个人信息</a></li>
                 <li><a href="/student/getUserInfo"><i class="mdi mdi-lock-outline"></i> 修改密码</a></li>
+                <li><a href="/student/getBalanceByAddBalance"><i class="mdi mdi-lock-outline"></i> 余额充值</a></li>
                 <li class="divider"></li>
                 <li><a th:href="@{/login}"><i class="mdi mdi-logout-variant"></i> 退出登录</a></li>
               </ul>
@@ -223,6 +216,7 @@
 
     </header>
     <!--End 头部信息-->
+
     
     <!--页面主要内容-->
     <main class="lyear-layout-content">

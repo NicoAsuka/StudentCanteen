@@ -21,18 +21,27 @@
 
       <!-- logo -->
       <div id="logo" class="sidebar-header">
-        <a href="index.html"><img src="/images/mylogo2.png"  title="LightYear" alt="程序设计1组"/></a>
+        <a href="index2.html"><img src="/images/mylogo2.png"  title="LightYear" alt="程序设计1组"/></a>
       </div>
       <div class="lyear-layout-sidebar-scroll">
 
         <nav class="sidebar-main">
           <ul class="nav nav-drawer">
             <li class="nav-item"><a th:href="@{/index}"><i class="mdi mdi-home"></i> 首页</a></li>
+
             <li class="nav-item nav-item-has-subnav">
-              <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 我的订单</a>
+              <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 管理菜单</a>
               <ul class="nav nav-subnav">
-                <li><a th:href="@{/student/getDishList}"> 开始点餐</a></li>
-                <li><a th:href="@{/student/getDishOrderList}"> 我的订单</a></li>
+                <li><a th:href="@{/admin/dish/getDishList}"> 菜单列表</a></li>
+                <li><a th:href="@{/createDish2}"> 创建菜单</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item nav-item-has-subnav">
+              <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 管理学生</a>
+              <ul class="nav nav-subnav">
+                <li><a th:href="@{/admin/student/getStudentList}"> 学生列表</a></li>
+                <li><a th:href="@{/import2}"> 注册学生账号</a></li>
               </ul>
             </li>
 
@@ -208,6 +217,7 @@
     </header>
     <!--End 头部信息-->
 
+
     <!--页面主要内容-->
     <main class="lyear-layout-content">
       
@@ -217,41 +227,25 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                
-                <div class="edit-avatar">
-                  <img src="/images/users/avatar.jpg" alt="..." class="img-avatar">
-                  <div class="avatar-divider"></div>
-                  <div class="edit-avatar-content">
-                    <button class="btn btn-default">修改头像</button>
-                    <p class="m-0">选择一张你喜欢的图片，裁剪后会自动生成264x264大小，上传图片大小不能超过2M。</p>
+                <form method="post" th:action="@{/admin/student/importStudent}" enctype="multipart/form-data" class="site-form">
+                  <div>
+                    <h1>批量注册学生</h1>
+                    <hr>
+                    <h4>创建excel表格，按照下图格式设置表头以及学生的学号和真实姓名，上传excel文件，以批量注册学生</h4>
+                    <img src="/images/img2.png" width="500" height="300">
                   </div>
-                </div>
-                <hr>
-                <form method="post" action="#!" class="site-form">
-                  <div class="form-group">
-                    <label for="username">用户名</label>
-                    <input type="text" class="form-control" name="username" id="username" th:value="${account.username}" disabled="disabled"/>
-                  </div>
+                  <br>
+                  <br>
+                  <br>
 
                   <div class="form-group">
-                    <label for="password">密码</label>
-                    <input type="text" class="form-control" name="password" id="password" th:value="${account.password}" disabled="disabled">
+                    <label style="padding: 0" class="col-xs-12" for="studentFile">请上传excel文件</label>
+                    <div  style="padding: 0" class="col-xs-12">
+                      <input type="file" id="studentFile" name="file">
+                    </div>
                   </div>
-
-                  <div class="form-group">
-                    <label for="nickname">真实姓名</label>
-                    <input type="text" class="form-control" name="nickname" id="nickname" th:value="${account.realName}" disabled="disabled">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="schoolId">学号</label>
-                    <input type="text" class="form-control" name="schoolId" id="schoolId" th:value="${account.schoolId}" disabled="disabled">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="balance">账户余额</label>
-                    <input type="text" class="form-control" name="balance" id="balance" th:value="${account.balance}" disabled="disabled">
-                  </div>
+                  <br>
+                  <button style="margin:50px 0 0 0" type="submit" class="btn btn-primary" onclick="alert('注册成功')">注册学生</button>
                 </form>
                 </hr>
               </div>

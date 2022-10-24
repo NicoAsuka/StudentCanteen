@@ -17,7 +17,7 @@ public interface StudentService {
 
     Account getBalance(Model model);
 
-    Map<String, Object> addBalance(Integer money);
+    void addBalance(String money,String password);
 
     Map<String, Object> getRestaurantList(Integer pageNum, Integer pageSize);
 

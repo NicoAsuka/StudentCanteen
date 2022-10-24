@@ -34,6 +34,14 @@ public class StudentController {
     }
 
     @OperateLog(operDesc = "学生端获取账户信息")
+    @GetMapping("/getBalanceByAddBalance")
+    public String getBalanceByAddBalance(Model model) {
+        Account account = studentService.getBalance(model);
+        model.addAttribute("account",account);
+        return "addBalance";
+    }
+
+    @OperateLog(operDesc = "学生端获取账户信息")
     @GetMapping("/getUserInfo")
     public String getUserInfo(Model model) {
         Account account = studentService.getBalance(model);
@@ -43,7 +51,7 @@ public class StudentController {
 
     @OperateLog(operDesc = "学生端更新密码")
     @PostMapping("/updatePasswordController")
-    public String getBalance(String password,Model model) {
+    public String updatePassword(String password,Model model) {
         if(password == null){
             return "updatePassword";
         }
@@ -55,8 +63,11 @@ public class StudentController {
 
     @OperateLog(operDesc = "学生端充值账户余额")
     @PostMapping("/addBalance")
-    public Map<String, Object> addBalance(@RequestParam Integer money) {
-        return studentService.addBalance(money);
+    public String addBalance(String balances,String password1) {
+        System.out.println(balances);
+        System.out.println(password1);
+        studentService.addBalance(balances,password1);
+        return "redirect:/student/getBalance";
     }
 
     @OperateLog(operDesc = "学生端获取菜品列表")

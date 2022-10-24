@@ -76,9 +76,9 @@ public class AdminDataListener implements ReadListener<Account> {
 //        AtomicInteger failure = new AtomicInteger();
 
         log.info("解析到一条数据:{}", JSON.toJSONString(data));
-        String username = data.getUsername();
+        String schoolId = data.getSchoolId();
         QueryWrapper<Account> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("username", username);
+        queryWrapper.eq("username", schoolId);
         List<Account> sameUsername = accountMapper.selectList(queryWrapper);
 
         //判断username是否有重复
@@ -86,15 +86,14 @@ public class AdminDataListener implements ReadListener<Account> {
             failure.incrementAndGet();
             throw new LocalRunTimeException(ErrorEnum.USER_EXIST);
         } else {
-            String md5Password;
-            try {
-                md5Password = DigestUtils.md5DigestAsHex((data.getUsername() + RandomUtil.randomStr())
-                        .getBytes("utf-8"));
-            } catch (UnsupportedEncodingException e) {
-                throw new RuntimeException(e);
-            }
-            data.setPassword(md5Password);
-            data.setRole(1);
+            String password;
+            //密码为学号加8位随机数
+            password = ((data.getSchoolId() + RandomUtil.randomStr()));
+            data.setPassword(password);
+            data.setRole(0);
+            data.setUsername(schoolId);
+            data.setBalance(0.0);
+            data.setIsDeleted(0);
             success.getAndIncrement();
             cachedDataList.add(data);
 

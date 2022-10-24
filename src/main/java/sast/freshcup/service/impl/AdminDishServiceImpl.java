@@ -36,7 +36,7 @@ public class AdminDishServiceImpl implements AdminDishService {
     DishMapper dishMapper;
 
     @Override
-    public Map<String, Object> createDish(String name, Integer restaurantId, String description, Double price) {
+    public void createDish(String name, Integer restaurantId, String description, Double price) {
 
         System.out.println(name);
         System.out.println(restaurantId);
@@ -59,13 +59,13 @@ public class AdminDishServiceImpl implements AdminDishService {
         //将新的订单插入数据库
         dishMapper.insert(dish);
 
-        Map<String, Object> res = new HashMap<>();
-        res.put("id",dish.getId());
-        res.put("dishesId",name);
-        res.put("RestaurantId",dish.getRestaurantId());
-        res.put("description",dish.getDescription());
-        res.put("Price",price);
-        return res;
+//        Map<String, Object> res = new HashMap<>();
+//        res.put("id",dish.getId());
+//        res.put("dishesId",name);
+//        res.put("RestaurantId",dish.getRestaurantId());
+//        res.put("description",dish.getDescription());
+//        res.put("Price",price);
+//        return res;
     }
 
     @Override
@@ -82,23 +82,23 @@ public class AdminDishServiceImpl implements AdminDishService {
     }
 
     @Override
-    public Map<String, Object> getDishList(Integer pageNum, Integer pageSize) {
+    public List<Dish> getDishList(Integer pageNum, Integer pageSize) {
             //以下是分页查询的写法
-            Page<Dish> page = new Page<>(pageNum, pageSize);
+            Page<Dish> page = new Page<>(1,50);
             //找到存在的restaurant信息，并通过id升序排列展示
             dishMapper.selectPage(page,new QueryWrapper<Dish>()
                     .eq("is_deleted",0)
                     .orderByAsc("id"));
 
+
+
             //封装返回
             List<Dish> records = page.getRecords();
-            long total = page.getTotal();
-            Map<String, Object> res = new HashMap<>();
-            res.put("total", total);
-            res.put("pageNum", pageNum);
-            res.put("pageSize", pageSize);
-            res.put("records", records);
-            return res;
+//            long total = page.getTotal();
+//            Map<String, Object> res = new HashMap<>();
+//            res.put("total", total);
+//            res.put("records", records);
+            return records;
     }
 
     @Override

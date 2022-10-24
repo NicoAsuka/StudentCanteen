@@ -21,18 +21,27 @@
 
             <!-- logo -->
             <div id="logo" class="sidebar-header">
-                <a href="index.html"><img src="/images/mylogo2.png"  title="LightYear" alt="程序设计1组"/></a>
+                <a href="index2.html"><img src="/images/mylogo2.png"  title="LightYear" alt="程序设计1组"/></a>
             </div>
             <div class="lyear-layout-sidebar-scroll">
 
                 <nav class="sidebar-main">
                     <ul class="nav nav-drawer">
                         <li class="nav-item"><a th:href="@{/index}"><i class="mdi mdi-home"></i> 首页</a></li>
+
                         <li class="nav-item nav-item-has-subnav">
-                            <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 我的订单</a>
+                            <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 管理菜单</a>
                             <ul class="nav nav-subnav">
-                                <li><a th:href="@{/student/getDishList}"> 开始点餐</a></li>
-                                <li><a th:href="@{/student/getDishOrderList}"> 我的订单</a></li>
+                                <li><a th:href="@{/admin/dish/getDishList}"> 菜单列表</a></li>
+                                <li><a th:href="@{/createDish2}"> 创建菜单</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item nav-item-has-subnav">
+                            <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 管理学生</a>
+                            <ul class="nav nav-subnav">
+                                <li><a th:href="@{/admin/student/getStudentList}"> 学生列表</a></li>
+                                <li><a th:href="@{/import2}"> 注册学生账号</a></li>
                             </ul>
                         </li>
 
@@ -208,6 +217,8 @@
         </header>
         <!--End 头部信息-->
 
+
+
         <!--页面主要内容-->
         <main class="lyear-layout-content">
 
@@ -242,43 +253,50 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
 
-                                        <form method="post" th:action="@{/student/deleteOrder}" class="site-form" >
+                                        <form method="post" th:action="@{/admin/student/deleteStudent}" class="site-form" >
                                             <div class="toolbar-btn-action">
-                                                <button type="submit" class="btn btn-danger">删除订单</button>
+                                                <button type="submit" class="btn btn-danger">删除学生</button>
+                                            </div>
+                                            <div class="toolbar-btn-action">
+                                                <button class="btn btn-info">点击编辑学生信息</button>
                                             </div>
                                             <table class="table table-bordered">
                                                 <thead>
                                                 <tr>
                                                     <th>
                                                         <label class="lyear-checkbox checkbox-primary">
-                                                            <input type="checkbox" id="check-all"><span></span>
+                                                            <input type="checkbox" id="check-all"><span>全选</span>
                                                         </label>
                                                     </th>
-                                                    <th>订单编号</th>
-                                                    <th>点餐人</th>
-                                                    <th>所点菜品</th>
-                                                    <th>餐品总价</th>
+                                                    <th>学生用户名</th>
+                                                    <th>学生密码</th>
+                                                    <th>学生姓名</th>
+                                                    <th>学生学号</th>
+                                                    <th>学生余额</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr th:each="dishOrder,state:${dishOrderList}">
+                                                <tr th:each="student,state:${studentList}">
                                                     <td>
                                                         <label class="lyear-checkbox checkbox-primary">
-                                                            <input type="checkbox" th:name="dishOrderIds"
-                                                                   th:value="${dishOrder.id}"><span></span>
+                                                            <input type="checkbox" th:name="studentListIds"
+                                                                   th:value="${student.uid}"><span></span>
                                                         </label>
                                                     </td>
                                                     <td>
-                                                        <span th:text="${dishOrder.id}"></span>
+                                                        <span th:text="${student.username} "></span>
                                                     </td>
                                                     <td>
-                                                        <span th:text="${dishOrder.uid}"></span>
+                                                        <span th:text="${student.password}"></span>
                                                     </td>
                                                     <td>
-                                                        <span th:text="${dishOrder.dishesId}"></span>
+                                                        <span th:text="${student.realName}"></span>
                                                     </td>
                                                     <td>
-                                                        <span th:text="${dishOrder.totalPrice}"></span>
+                                                        <span th:text="${student.schoolId}"></span>
+                                                    </td>
+                                                    <td>
+                                                        <span th:text="${student.balance}"></span>
                                                     </td>
                                                 </tr>
                                                 </tbody>

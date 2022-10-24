@@ -69,21 +69,25 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Map<String, Object> addBalance(Integer money) {
-        if (money == null || money <= 0){
+    public void addBalance(String money,String password) {
+        if (money == null || Integer.parseInt(money) <= 0){
             throw new LocalRunTimeException(ErrorEnum.MONEY_ERROR);
         }
 
         //通过token获取基本的用户信息如uid，username
-        Integer uid = accountHolder.get().getUid();
-        String username = accountHolder.get().getUsername();
+        Integer uid = (Integer) redisService.get("uid");
+        String passwordFromDB = (String) redisService.get("password");
+
+        if (!passwordFromDB.equals(password)){
+            throw new LocalRunTimeException(ErrorEnum.MONEY_ERROR);
+        }
 
         //通过uid从数据库中获取对应的账户对象
         Account account = accountMapper.selectById(uid);
 
         //通过对象得到该对象的账户余额
         Double oldBalance = account.getBalance();
-        Double newBalance = oldBalance + money;
+        Double newBalance = oldBalance + Integer.parseInt(money);
 
         //充值余额
         account.setBalance(newBalance);
@@ -91,13 +95,12 @@ public class StudentServiceImpl implements StudentService {
         //更新数据库
         accountMapper.updateById(account);
 
-        //封装数据，返回
-        Map<String, Object> returnBalance = new HashMap<>();
-        returnBalance.put("uid",uid);
-        returnBalance.put("username",username);
-        returnBalance.put("oldBalance",oldBalance);
-        returnBalance.put("newBalance",account.getBalance());
-        return returnBalance;
+//        //封装数据，返回
+//        Map<String, Object> returnBalance = new HashMap<>();
+//        returnBalance.put("uid",uid);
+//        returnBalance.put("username",username);
+//        returnBalance.put("oldBalance",oldBalance);
+//        returnBalance.put("newBalance",account.getBalance());
     }
 
     @Override
@@ -163,6 +166,13 @@ public class StudentServiceImpl implements StudentService {
             i++;
         }
 
+        Account student = accountMapper.selectById((Integer) redisService.get("uid"));
+        Double newBalance = student.getBalance() - totalPrice;
+        if (newBalance <= 0){
+            throw new LocalRunTimeException(ErrorEnum.NO_BALANCE);
+        }
+        student.setBalance(newBalance);
+
         //新建一个对象类
         DishOrder dishOrder = new DishOrder();
         //将参数传入
@@ -171,8 +181,11 @@ public class StudentServiceImpl implements StudentService {
         dishOrder.setIsDeleted(0);
         dishOrder.setTotalPrice(totalPrice);
 
+
+
         //将新的订单插入数据库
         orderMapper.insert(dishOrder);
+        accountMapper.updateById(student);
     }
 
     @Override
@@ -193,6 +206,7 @@ public class StudentServiceImpl implements StudentService {
         Account account = accountMapper.selectById(uid);
         account.setPassword(password);
         accountMapper.updateById(account);
+        redisService.set("password",password);
     }
 
     @Override
