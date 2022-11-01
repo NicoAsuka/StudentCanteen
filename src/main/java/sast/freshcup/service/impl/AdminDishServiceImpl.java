@@ -164,4 +164,10 @@ public class AdminDishServiceImpl implements AdminDishService {
     public Map<String, Object> updateCountOfDish(Integer integer, Integer count) {
         return null;
     }
+
+    @Override
+    public Dish getDishListById(Integer id) {
+        Dish dish = dishMapper.selectById(id);
+        return dish;
+    }
 }

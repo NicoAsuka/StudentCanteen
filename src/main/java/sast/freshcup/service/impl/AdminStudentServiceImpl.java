@@ -88,7 +88,7 @@ public class AdminStudentServiceImpl implements AdminStudentService {
         accountMapper.updateById(account);
         return "成功删除学生信息";
     }
-    public  String updateStudent(Integer uid,String userName,String password,String realName,String schoolId){
+    public void updateStudent(Integer uid,String userName,String password,String realName,String schoolId){
         Account account = accountMapper.selectById(uid);
 
         account.setUsername(userName);
@@ -96,7 +96,6 @@ public class AdminStudentServiceImpl implements AdminStudentService {
         account.setSchoolId(schoolId);
         account.setRealName(realName);
         accountMapper.updateById(account);
-        return "成功修改学生信息";
     }
 
     @Override

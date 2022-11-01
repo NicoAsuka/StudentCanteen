@@ -21,21 +21,15 @@
 
             <!-- logo -->
             <div id="logo" class="sidebar-header">
-                <a href="index.html"><img src="/images/mylogo2.png"  title="LightYear" alt="程序设计1组"/></a>
+                <a th:href="@{/index}"><img src="/images/mylogo2.png"  title="LightYear" alt="程序设计1组"/></a>
             </div>
             <div class="lyear-layout-sidebar-scroll">
 
                 <nav class="sidebar-main">
                     <ul class="nav nav-drawer">
                         <li class="nav-item"><a th:href="@{/index}"><i class="mdi mdi-home"></i> 首页</a></li>
-                        <li class="nav-item nav-item-has-subnav">
-                            <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 我的订单</a>
-                            <ul class="nav nav-subnav">
-                                <li><a th:href="@{/student/getDishList}"> 开始点餐</a></li>
-                                <li><a th:href="@{/student/getDishOrderList}"> 我的订单</a></li>
-                            </ul>
-                        </li>
-
+                        <li class="nav-item"><a th:href="@{/student/getDishList}"><i class="mdi mdi-home"></i> 开始点餐</a></li>
+                        <li class="nav-item"><a th:href="@{/student/getDishOrderList}"><i class="mdi mdi-home"></i> 我的订单</a></li>
                     </ul>
                 </nav>
 

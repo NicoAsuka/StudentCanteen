@@ -91,8 +91,11 @@ public class LoginController {
         queryWrapper.eq("username", username);
         Account accountFromDB = accountMapper.selectOne(queryWrapper);
         if (accountFromDB == null) {
+            redisService.set("message","用户不存在");
+            model.addAttribute(redisService.get("message"));
             return "login";
         } else if (!password.equals(accountFromDB.getPassword())) {
+            redisService.set("message","密码错误");
             return "login";
         }
 

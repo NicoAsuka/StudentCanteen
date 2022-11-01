@@ -39,11 +39,11 @@ public class AdminStudentController {
     }
 
     @OperateLog(operDesc = "根据uid获取单个学生信息")
-    @GetMapping("/getStudent")
+    @GetMapping("/getUpdateStudentById")
     public String getStudent(Integer uid,Model  model) {
         Account student = adminStudentService.getStudent(uid);
         model.addAttribute("student",student);
-        return "";
+        return "updateStudent2";
     }
 
 
@@ -55,8 +55,9 @@ public class AdminStudentController {
 
     @OperateLog(operDesc = "修改学生信息")
     @PostMapping("/updateStudent")
-    public String updateStudent(Integer uid,String userName,String password,String realName,String schoolId) {
-        return adminStudentService.updateStudent(uid,userName,password,realName,schoolId);
+    public String updateStudent(Integer uid,String username,String password,String realName,String schoolId) {
+        adminStudentService.updateStudent(uid,username,password,realName,schoolId);
+        return "redirect:/admin/student/getStudentList";
     }
 
     @OperateLog(operDesc = "管理端批量导入管理员")

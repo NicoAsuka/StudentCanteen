@@ -22,7 +22,7 @@
 
         <!-- logo -->
         <div id="logo" class="sidebar-header">
-          <a href="index2.html"><img src="/images/mylogo2.png"  title="LightYear" alt="程序设计1组"/></a>
+          <a th:href="@{/index2}"><img src="/images/mylogo2.png"  title="LightYear" alt="程序设计1组"/></a>
         </div>
         <div class="lyear-layout-sidebar-scroll">
 
@@ -227,41 +227,38 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                
-                <div class="edit-avatar">
-                  <img src="/images/users/avatar.jpg" alt="..." class="img-avatar">
-                  <div class="avatar-divider"></div>
-                  <div class="edit-avatar-content">
-                    <button class="btn btn-default">修改头像</button>
-                    <p class="m-0">选择一张你喜欢的图片，裁剪后会自动生成264x264大小，上传图片大小不能超过2M。</p>
-                  </div>
-                </div>
-                <hr>
-                <form method="post" action="#!" class="site-form">
+                <form method="post" th:action="@{/admin/student/updateStudent}" class="site-form">
+                  <input type="hidden" class="form-control" name="username" id="uid" th:value="${student.uid}" />
                   <div class="form-group">
                     <label for="username">用户名</label>
-                    <input type="text" class="form-control" name="username" id="username" th:value="${student.username}" disabled="disabled"/>
+                    <input type="text" class="form-control" name="username" id="username" th:value="${student.username}" />
                   </div>
 
                   <div class="form-group">
                     <label for="password">密码</label>
-                    <input type="text" class="form-control" name="password" id="password" th:value="${account.password}" disabled="disabled">
+                    <input type="text" class="form-control" name="password" id="password" th:value="${student.password}" />
                   </div>
 
                   <div class="form-group">
-                    <label for="nickname">真实姓名</label>
-                    <input type="text" class="form-control" name="nickname" id="nickname" th:value="${account.realName}" disabled="disabled">
+                    <label for="realName">真实姓名</label>
+                    <input type="text" class="form-control" name="realName" id="realName" th:value="${student.realName}" />
                   </div>
 
                   <div class="form-group">
                     <label for="schoolId">学号</label>
-                    <input type="text" class="form-control" name="schoolId" id="schoolId" th:value="${account.schoolId}" disabled="disabled">
+                    <input type="text" class="form-control" name="schoolId" id="schoolId" th:value="${student.schoolId}" />
                   </div>
 
                   <div class="form-group">
                     <label for="balance">账户余额</label>
-                    <input type="text" class="form-control" name="balance" id="balance" th:value="${account.balance}" disabled="disabled">
+                    <input type="text" class="form-control" name="balance" id="balance" th:value="${student.balance}" />
                   </div>
+
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary" onclick="alert('修改学生信息成功')">提交</button>
+                    <button type="button" class="btn btn-default" onclick="javascript:history.back(-1);return false;">返 回</button>
+                  </div>
+
                 </form>
                 </hr>
               </div>
@@ -281,5 +278,6 @@
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/perfect-scrollbar.min.js"></script>
 <script type="text/javascript" src="/js/main.min.js"></script>
+</div>
 </body>
 </html>

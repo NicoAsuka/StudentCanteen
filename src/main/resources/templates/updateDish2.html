@@ -227,25 +227,37 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <form method="post" th:action="@{/admin/student/importStudent}" enctype="multipart/form-data" class="site-form">
-                  <div>
-                    <h1>批量注册学生</h1>
-                    <hr>
-                    <h4>创建excel表格，按照下图格式设置表头以及学生的学号和真实姓名，上传excel文件，以批量注册学生</h4>
-                    <img src="/images/img2.png" width="500" height="300">
-                  </div>
-                  <br>
-                  <br>
-                  <br>
+                <form method="post" th:action="@{/admin/dish/updateDish}" class="site-form">
 
                   <div class="form-group">
-                    <label style="padding: 0" class="col-xs-12" for="studentFile">请上传excel文件</label>
-                    <div  style="padding: 0" class="col-xs-12">
-                      <input type="file" id="studentFile" name="file">
-                    </div>
+                    <input type="hidden" class="form-control" name="id" id="id" th:value="${dishById.id}"/>
                   </div>
-                  <br>
-                  <button style="margin:50px 0 0 0" type="submit" class="btn btn-primary" onclick="alert('注册成功')">注册学生</button>
+
+                  <div class="form-group">
+                    <label for="name">菜品名称</label>
+                    <input type="text" class="form-control" name="name" id="name" th:value="${dishById.name}"/>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="description">菜品描述</label>
+                    <input type="text" class="form-control" name="description" id="description" th:value="${dishById.description}">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="price">菜品单价</label>
+                    <input type="text" class="form-control" name="price" id="price" th:value="${dishById.price}">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="restaurantId">所属餐厅</label>
+                    <input type="text" class="form-control" name="restaurantId" id="restaurantId" th:value="${dishById.restaurantId}">
+                  </div>
+
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary" onclick="alert('修改菜品成功')">提交</button>
+                    <button type="button" class="btn btn-default" onclick="javascript:history.back(-1);return false;">返 回</button>
+                  </div>
+
                 </form>
                 </hr>
               </div>

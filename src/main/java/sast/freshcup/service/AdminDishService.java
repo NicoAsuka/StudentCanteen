@@ -28,5 +28,6 @@ public interface AdminDishService {
 
     Map<String, Object> updateCountOfDish(Integer integer,Integer count);
 
+    Dish getDishListById(Integer id);
 }
 

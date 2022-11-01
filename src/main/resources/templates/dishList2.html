@@ -21,7 +21,7 @@
 
             <!-- logo -->
             <div id="logo" class="sidebar-header">
-                <a href="index2.html"><img src="/images/mylogo2.png"  title="LightYear" alt="程序设计1组"/></a>
+                <a th:href="@{/index2}"><img src="/images/mylogo2.png"  title="LightYear" alt="程序设计1组"/></a>
             </div>
             <div class="lyear-layout-sidebar-scroll">
 
@@ -254,11 +254,9 @@
                                     <div class="table-responsive">
 
                                         <form method="post" th:action="@{/admin/dish/deleteDish}" class="site-form" >
-                                            <div class="toolbar-btn-action">
+                                            <div class="form-group">
                                                 <button type="submit" class="btn btn-danger">删除菜品</button>
-                                            </div>
-                                            <div class="toolbar-btn-action">
-                                                <button class="btn btn-info">点击菜品编号编辑菜品</button>
+                                                <button type="button" class="btn btn-info">点击菜品编号编辑菜品</button>
                                             </div>
                                             <table class="table table-bordered">
                                                 <thead>
@@ -284,7 +282,7 @@
                                                         </label>
                                                     </td>
                                                     <td>
-                                                        <a th:action="@{/admin/dish/updateDishPage}" th:text="${dish.id} "></a>
+                                                        <a th:href="@{'/admin/dish/getUpdateDishList?id='+${dish.id}}" th:text="${dish.id} "></a>
                                                     </td>
                                                     <td>
                                                         <span th:text="${dish.name}"></span>

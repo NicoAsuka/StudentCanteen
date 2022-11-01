@@ -17,7 +17,7 @@ public interface AdminStudentService {
 
     Account getStudent(Integer uid);
     String deleteStudent(Integer id);
-    String updateStudent(Integer uid,String userName,String password,String realName,String schoolId);
+    void updateStudent(Integer uid,String userName,String password,String realName,String schoolId);
 
     String importStudent(MultipartFile studentFile, HttpServletResponse response) throws IOException;
 

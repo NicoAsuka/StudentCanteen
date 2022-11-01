@@ -35,6 +35,9 @@ public class Dish {
     @NotNull(message = "菜品价格不能为 null")
     private Double price;
 
+    @NotNull(message = "菜品分量不能为 null")
+    private Integer count;
+
     @TableField(value = "is_deleted")
     private Integer isDeleted;
 }

@@ -36,8 +36,17 @@ public class AdminDishController {
 
     @OperateLog(operDesc = "管理端修改菜品")
     @PostMapping("/updateDish")
-    public Map<String, Object> updateDish(Integer id, String name, Integer restaurantId, String description, Double price) {
-        return adminDishService.updateDish(id, name, restaurantId, description, price);
+    public String updateDish(Integer id, String name, Integer restaurantId, String description, Double price) {
+        adminDishService.updateDish(id, name, restaurantId, description, price);
+        return "redirect:/admin/dish/getDishList";
+    }
+
+    @OperateLog(operDesc = "管理端根据菜品id获取菜品返回页面")
+    @GetMapping("/getUpdateDishList")
+    public String getUpdateDishList(Integer id,Model model) {
+        Dish dishById = adminDishService.getDishListById(id);
+        model.addAttribute("dishById",dishById);
+        return "updateDish2";
     }
 
 

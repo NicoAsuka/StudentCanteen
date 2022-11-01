@@ -21,7 +21,7 @@
 
             <!-- logo -->
             <div id="logo" class="sidebar-header">
-                <a href="index2.html"><img src="/images/mylogo2.png"  title="LightYear" alt="程序设计1组"/></a>
+                <a th:href="@{/index2}"><img src="/images/mylogo2.png"  title="LightYear" alt="程序设计1组"/></a>
             </div>
             <div class="lyear-layout-sidebar-scroll">
 
@@ -254,11 +254,9 @@
                                     <div class="table-responsive">
 
                                         <form method="post" th:action="@{/admin/student/deleteStudent}" class="site-form" >
-                                            <div class="toolbar-btn-action">
+                                            <div class="form-group">
                                                 <button type="submit" class="btn btn-danger">删除学生</button>
-                                            </div>
-                                            <div class="toolbar-btn-action">
-                                                <button class="btn btn-info">点击编辑学生信息</button>
+                                                <button type="button" class="btn btn-info">点击学生id编辑学生信息</button>
                                             </div>
                                             <table class="table table-bordered">
                                                 <thead>
@@ -268,6 +266,7 @@
                                                             <input type="checkbox" id="check-all"><span>全选</span>
                                                         </label>
                                                     </th>
+                                                    <th>学生id</th>
                                                     <th>学生用户名</th>
                                                     <th>学生密码</th>
                                                     <th>学生姓名</th>
@@ -282,6 +281,9 @@
                                                             <input type="checkbox" th:name="studentListIds"
                                                                    th:value="${student.uid}"><span></span>
                                                         </label>
+                                                    </td>
+                                                    <td>
+                                                        <a th:href="@{'/admin/student/getUpdateStudentById?uid='+${student.uid}}" th:text="${student.uid} "></a>
                                                     </td>
                                                     <td>
                                                         <span th:text="${student.username} "></span>
