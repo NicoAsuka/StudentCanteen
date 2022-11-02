@@ -254,6 +254,11 @@
                   </div>
 
                   <div class="form-group">
+                    <label for="restaurantId">菜品数量</label>
+                    <input type="text" class="form-control" name="count" id="count" th:value="${dishById.count}">
+                  </div>
+
+                  <div class="form-group">
                     <button type="submit" class="btn btn-primary" onclick="alert('修改菜品成功')">提交</button>
                     <button type="button" class="btn btn-default" onclick="javascript:history.back(-1);return false;">返 回</button>
                   </div>

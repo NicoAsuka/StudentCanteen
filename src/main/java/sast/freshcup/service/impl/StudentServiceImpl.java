@@ -143,7 +143,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void createOrder(Integer[] dishesId) {
-        System.out.println(dishesId);
         //传参判空
         if (dishesId == null){
             throw new LocalRunTimeException(ErrorEnum.NO_DISHESID);
@@ -156,8 +155,14 @@ public class StudentServiceImpl implements StudentService {
         String dishesIdString = new String();
         for (Integer dishId : dishesId){
             Dish dish = dishMapper.selectById(dishId);
+            dish.setCount(dish.getCount()-1);
+            if(dish.getCount() <= 0){
+                dish.setIsDeleted(1);
+            }
+            dishMapper.updateById(dish);
             Double price = dish.getPrice();
             totalPrice += price;
+
             if (i == 0){
                 dishesIdString += Integer.toString(dishId);
             }else{

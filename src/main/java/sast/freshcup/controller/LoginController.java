@@ -42,6 +42,9 @@ public class LoginController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    String uuid;
+
+
     /**
      * 返回验证码图片，并将验证码存入Redis
      *
@@ -49,7 +52,7 @@ public class LoginController {
      */
     @GetMapping("/getValidateCode")
     public void getImgValidateCode(HttpServletResponse response) {
-        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        uuid = UUID.randomUUID().toString().replaceAll("-", "");
 
         response.setDateHeader("Expires", 0);
         response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
@@ -69,7 +72,8 @@ public class LoginController {
             e.printStackTrace();
         }
 
-        redisService.set(LOGIN_VALIDATE_CODE + uuid, capText, 60 * 5);
+        redisService.del("validCode");
+        redisService.set("validCode", capText, 60 * 5);
     }
 
     @PostMapping("/loginController")
@@ -78,7 +82,7 @@ public class LoginController {
                         String validateCode,
                         Model model) {
         //验证验证码
-//        String currentCode = (String) redisService.get(LOGIN_VALIDATE_CODE + uuid);
+        String currentCode = (String) redisService.get("validCode");
 //        if (currentCode == null) {
 //            throw new LocalRunTimeException("验证码失效");
 //        } else if (!currentCode.equals(validateCode)) {
@@ -92,10 +96,19 @@ public class LoginController {
         Account accountFromDB = accountMapper.selectOne(queryWrapper);
         if (accountFromDB == null) {
             redisService.set("message","用户不存在");
-            model.addAttribute(redisService.get("message"));
+            model.addAttribute("message",redisService.get("message"));
+            redisService.del("message");
             return "login";
         } else if (!password.equals(accountFromDB.getPassword())) {
             redisService.set("message","密码错误");
+            model.addAttribute("message",redisService.get("message"));
+            redisService.del("message");
+            return "login";
+        }
+        else if (!validateCode.equals(currentCode)){
+            redisService.set("message","验证码错误");
+            model.addAttribute("message",redisService.get("message"));
+            redisService.del("message");
             return "login";
         }
 

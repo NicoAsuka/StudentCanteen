@@ -36,6 +36,8 @@ public enum ErrorEnum {
 
     NO_DISH(6004,"该菜品菜品不存在"),
 
+    DISH_SAME(6005,"菜品重复请更换菜品名称"),
+
     DATE_ERROR(8001,"时间设置错误"),
     IMPORT_ERROR(8002,"导入异常" );
 

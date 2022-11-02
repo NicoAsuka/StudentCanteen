@@ -29,15 +29,16 @@ public class AdminDishController {
     public String createDish(String name,
                              Integer restaurantId,
                              String description,
-                             Double price) {
-        adminDishService.createDish(name, restaurantId, description, price);
+                             Double price,
+                             Integer count) {
+        adminDishService.createDish(name, restaurantId, description, price,count);
         return "redirect:/admin/dish/getDishList";
     }
 
     @OperateLog(operDesc = "管理端修改菜品")
     @PostMapping("/updateDish")
-    public String updateDish(Integer id, String name, Integer restaurantId, String description, Double price) {
-        adminDishService.updateDish(id, name, restaurantId, description, price);
+    public String updateDish(Integer id, String name, Integer restaurantId, String description, Double price,Integer count) {
+        adminDishService.updateDish(id, name, restaurantId, description, price,count);
         return "redirect:/admin/dish/getDishList";
     }
 

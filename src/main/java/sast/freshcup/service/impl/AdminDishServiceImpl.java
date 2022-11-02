@@ -36,7 +36,7 @@ public class AdminDishServiceImpl implements AdminDishService {
     DishMapper dishMapper;
 
     @Override
-    public void createDish(String name, Integer restaurantId, String description, Double price) {
+    public void createDish(String name, Integer restaurantId, String description, Double price,Integer count) {
 
         System.out.println(name);
         System.out.println(restaurantId);
@@ -47,6 +47,11 @@ public class AdminDishServiceImpl implements AdminDishService {
             throw new LocalRunTimeException(ErrorEnum.PARAMS_LOSS);
         }
 
+        List<Dish> dishes = dishMapper.selectList(new QueryWrapper<Dish>().eq("name", name));
+        if (!dishes.isEmpty()){
+            throw new LocalRunTimeException(ErrorEnum.DISH_SAME);
+        }
+
         //新建一个对象类
         Dish dish = new Dish();
         //将参数传入
@@ -55,6 +60,7 @@ public class AdminDishServiceImpl implements AdminDishService {
         dish.setPrice(price);
         dish.setRestaurantId(restaurantId);
         dish.setDescription(description);
+        dish.setCount(count);
 
         //将新的订单插入数据库
         dishMapper.insert(dish);
@@ -102,7 +108,7 @@ public class AdminDishServiceImpl implements AdminDishService {
     }
 
     @Override
-    public Map<String, Object> updateDish(Integer id,String name, Integer restaurantId, String description, Double price){
+    public Map<String, Object> updateDish(Integer id,String name, Integer restaurantId, String description, Double price,Integer count){
         //通过id调出需修改的dish对象
         Dish dish = dishMapper.selectById(id);
 
@@ -135,6 +141,9 @@ public class AdminDishServiceImpl implements AdminDishService {
 
         if (description != null){
             dish.setDescription(description);
+        }
+        if (count != null){
+            dish.setCount(count);
         }
         dish.setIsDeleted(0);
 

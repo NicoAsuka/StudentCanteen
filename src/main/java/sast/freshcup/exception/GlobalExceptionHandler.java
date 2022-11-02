@@ -1,11 +1,13 @@
 package sast.freshcup.exception;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import sast.freshcup.response.Result;
+import sast.freshcup.service.RedisService;
 
 import java.util.stream.Collectors;
 
@@ -16,13 +18,17 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
+    @Autowired
+    RedisService redisService;
 
     @ExceptionHandler(LocalRunTimeException.class)
     public Result localRunTimeException(LocalRunTimeException e) {
         log.error("异常", e);
         if (e.getErrorEnum() != null) {
+            redisService.set("errorEnum",e.getErrorEnum());
             return Result.failure(e.getErrorEnum());
         } else {
+            redisService.set("message",e.getMessage());
             return Result.failure(e.getMessage());
         }
     }
@@ -34,6 +40,7 @@ public class GlobalExceptionHandler {
         String messages = e.getBindingResult().getAllErrors().stream()
                 .map(ObjectError::getDefaultMessage)
                 .collect(Collectors.joining("\n"));
+        redisService.set("messages",messages);
         return Result.failure(messages);
     }
 }

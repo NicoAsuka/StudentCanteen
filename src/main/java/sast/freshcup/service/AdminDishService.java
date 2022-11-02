@@ -20,9 +20,9 @@ public interface AdminDishService {
 
     Map<String, Object> getOneDish(Integer id);
 
-    void createDish(String name, Integer restaurantId, String description, Double price);
+    void createDish(String name, Integer restaurantId, String description, Double price,Integer count);
 
-    Map<String, Object> updateDish(Integer integer, String name, Integer id, String description, Double price);
+    Map<String, Object> updateDish(Integer integer, String name, Integer id, String description, Double price,Integer count);
 
     String deleteDish(Integer id);
 

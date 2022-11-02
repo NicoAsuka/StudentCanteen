@@ -252,7 +252,6 @@
 
                                 <div class="card-body">
                                     <div class="table-responsive">
-
                                         <form method="post" th:action="@{/admin/dish/deleteDish}" class="site-form" >
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-danger">删除菜品</button>
@@ -271,6 +270,7 @@
                                                     <th>菜品描述</th>
                                                     <th>所属餐厅</th>
                                                     <th>菜品单价</th>
+                                                    <th>菜品数量</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -295,6 +295,9 @@
                                                     </td>
                                                     <td>
                                                         <span th:text="${dish.price}"></span>
+                                                    </td>
+                                                    <td>
+                                                        <span th:text="${dish.count}"></span>
                                                     </td>
                                                 </tr>
                                                 </tbody>
