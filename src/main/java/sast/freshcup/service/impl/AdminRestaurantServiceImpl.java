@@ -46,11 +46,6 @@ public class AdminRestaurantServiceImpl implements AdminRestaurantService {
 
     @Override
     public Map<String, Object> createRestaurant(String name, Integer restaurantId, String description, String location) {
-
-        System.out.println(name);
-        System.out.println(restaurantId);
-        System.out.println(description);
-        System.out.println(location);
         //传参判空
         if (name == null||restaurantId == null||description == null||location == null){
             throw new LocalRunTimeException(ErrorEnum.PARAMS_LOSS);
@@ -87,9 +82,6 @@ public class AdminRestaurantServiceImpl implements AdminRestaurantService {
         //通过id调出需修改的restaurant对象
         Restaurant restaurant = restaurantMapper.selectById(restaurantId);
 
-
-
-
         if (restaurant.getIsDeleted() == 1){
             Map<String, Object> res = new HashMap<>();
             res.put("dishesId",restaurant.getName());
@@ -98,6 +90,7 @@ public class AdminRestaurantServiceImpl implements AdminRestaurantService {
             res.put("Price",restaurant.getLocation());
             return res;
         }
+
         //传参判空，不能全部参数都空
         if (name == null && restaurantId == null && description == null && location == null){
             throw new LocalRunTimeException(ErrorEnum.PARAMS_LOSS);
@@ -128,7 +121,6 @@ public class AdminRestaurantServiceImpl implements AdminRestaurantService {
         res.put("description",restaurant.getDescription());
         res.put("Location",restaurant.getLocation());
         return res;
-
     }
 
 

@@ -104,7 +104,7 @@ public class StudentController {
     @PostMapping("/createOrder")
     public String createOrder(Integer[] dishesId) {
         studentService.createOrder(dishesId);
-        return "dishOrderList";
+        return "redirect:/student/getDishOrderList";
     }
 
     @OperateLog(operDesc = "学生端取消订单")
